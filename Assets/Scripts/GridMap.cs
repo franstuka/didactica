@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GridMap : MonoBehaviour {
 
-    public LayerMask bloquedMask;
-    public LayerMask chestMask;
-    public LayerMask exitMask;
-    public LayerMask enemyMask;
+    
     public Vector2 WorldSize;
     public float CellRadius;
-    [SerializeField] public Cell[,] grid; 
+    public Cell[,] grid;
+    private LayerMask bloquedMask;
+    private LayerMask chestMask;
+    private LayerMask exitMask;
+    private LayerMask enemyMask;
 
     float cellDiameter;
     int gridSizeX;
@@ -45,7 +46,7 @@ public class GridMap : MonoBehaviour {
             {
                 Vector3 worldPoint = gridBottonLeft + Vector3.right * (x * cellDiameter + CellRadius) + Vector3.forward * (y * cellDiameter + CellRadius);
 
-                if(Physics.CheckSphere(worldPoint, CellRadius, bloquedMask)) //celltypes
+                if(Physics.CheckBox(worldPoint,Vector3.one * CellRadius,Quaternion.identity,bloquedMask)) //celltypes
                 {
                     grid[x, y] = new Cell(CellTypes.blocked, worldPoint, 0);
                 }
@@ -114,7 +115,7 @@ public class GridMap : MonoBehaviour {
                     Gizmos.color = Color.black;
                 }
 
-                Gizmos.DrawCube(n.GlobalPosition, Vector3.one * (cellDiameter * 4/5));
+                Gizmos.DrawCube(n.GlobalPosition, Vector3.one * (cellDiameter *19/20 ));
             }
         }
 
