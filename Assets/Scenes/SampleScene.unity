@@ -403,6 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c146f1859b8d2d747a167a0bdb9203e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seeTypes: 1
+  seePathCost: 0
   WorldSize: {x: 30, y: 30}
   CellRadius: 0.25
 --- !u!4 &287976936
