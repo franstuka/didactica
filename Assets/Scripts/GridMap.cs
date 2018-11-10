@@ -87,7 +87,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
                 }
                 else//last else
                 {
-                    grid[x, y] = new Cell(CellTypes.emphy, worldPoint, 0);
+                    grid[x, y] = new Cell(CellTypes.emphy, worldPoint, 1);
                 }
             }
         }
