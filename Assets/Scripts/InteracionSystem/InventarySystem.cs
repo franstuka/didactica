@@ -31,12 +31,13 @@ public class InventarySystem : MonoBehaviour
 
     private void Start()
     {
+        /*
         player = GameObject.Find("Player");
         if (!player)
         {
             Debug.LogError("Can't find player");
         }
-             
+             */
     }
 
     ////////////////////////////////////////////////////////////////////////////
