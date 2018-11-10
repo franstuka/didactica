@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    Navegation nav;
+    public int movementsAvaible = 0;
+    [SerializeField] private int startingMoves = 100;
+    [SerializeField] Navegation nav;
     
 
     private void Start()
     {
+        movementsAvaible = startingMoves;
         nav = GetComponent<Navegation>();
     }
 
     // Update is called once per frame
     void Update () {
-		
-        if(Input.GetMouseButtonDown(0))
+
+        if (movementsAvaible <= 0 && nav.GetStopped())
         {
-            Debug.Log("HAIL");
+            //enter combat
+        }
+        else if(Input.GetMouseButtonDown(0))
+        {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 13)) //layer 13 click detection
             {
-                Debug.Log("NAIN");
-                nav.SetDestinationPlayer(hit.point);
+                movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move
             }
         }
-
+        
 	}
 }
