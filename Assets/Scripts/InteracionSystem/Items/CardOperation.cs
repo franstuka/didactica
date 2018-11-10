@@ -10,6 +10,16 @@ public class CardOperation : Item {
     public CardType cardOperation;
     public GameObject prefab;
 
+    ////////////////////////////////////////////////////////////////////////////
+    //Sección de prueba
+
+    public string cardName;
+    public CardOperation(string newCardName)
+    {
+        cardName = newCardName;
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
     public string GetDescription(Card item)
     {
         return item.name;

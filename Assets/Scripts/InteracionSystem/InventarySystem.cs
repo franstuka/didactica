@@ -10,6 +10,7 @@ public class InventarySystem : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (instance != null)
         {
             Debug.LogError("More than one instance of inventory is trying to active");
@@ -27,6 +28,7 @@ public class InventarySystem : MonoBehaviour
     private GameObject player;
     [SerializeField] private PickUpText text;
 
+
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -34,7 +36,35 @@ public class InventarySystem : MonoBehaviour
         {
             Debug.LogError("Can't find player");
         }
+             
     }
+
+    ////////////////////////////////////////////////////////////////////////////
+    //Sección de prueba   
+    public List<Card> GetCardList()
+    {
+        cardList.Add(new Card(10));
+        cardList.Add(new Card(20));
+        cardList.Add(new Card(30));
+        cardList.Add(new Card(40));
+        cardList.Add(new Card(50));
+        cardList.Add(new Card(60));
+        cardList.Add(new Card(70));
+        return cardList;
+    }
+
+    public List<CardOperation> GetCardOperationList()
+    {
+        cardOperationList.Add(new CardOperation("Sum"));
+        cardOperationList.Add(new CardOperation("Substraction"));
+        cardOperationList.Add(new CardOperation("Multiply"));
+        cardOperationList.Add(new CardOperation("Divide"));
+        return cardOperationList;
+
+    }
+    //////////////////////////////////////////////////////////////////////////////
+
+
 
     public void AddNewElement(Item item)
     {
