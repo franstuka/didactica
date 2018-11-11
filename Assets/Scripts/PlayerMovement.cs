@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 13)) //layer 13 click detection
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~13)) //layer 13 click detection
             {
                 movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move
             }
