@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
     #region Singleton
 
     public static GameManager instance;
-    public static SaveDataManager saveDataManager;
+    private static SaveDataManager saveDataManager;
 
     private void Awake()
     {
@@ -49,5 +49,40 @@ public class GameManager : MonoBehaviour {
     public void EndLevelWin()
     {
         menu.win.StartFade();
+    }
+
+    public void OnSceneEnter()
+    {
+
+    }
+
+    public void OnCombatEnter()
+    {
+
+    }
+
+    public void ReturnToLevelScene()
+    {
+
+    }
+
+    public void OnSceneExit()
+    {
+
+    }
+
+    public void SaveAndQuit()
+    {
+
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+
+    }
+
+    public void InicialicePlayerData()
+    {
+
     }
 }
