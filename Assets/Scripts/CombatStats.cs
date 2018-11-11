@@ -5,8 +5,8 @@ using UnityEngine;
 public class CombatStats : MonoBehaviour {
 
     public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE, LIGHTVISION };
-    [SerializeField] private float MaxHp = 1;
-    [SerializeField] private float HP = 1;
+    [SerializeField] private float MaxHp = 0;
+    [SerializeField] private float HP = 0;
     [SerializeField] private float Damage = 0;
     [SerializeField] private float Defense = 0;
 
@@ -15,31 +15,16 @@ public class CombatStats : MonoBehaviour {
     [SerializeField] protected AudioSource DoDamageSound;
     [SerializeField] private AudioSource GetDamageSound;
     [SerializeField] private AudioSource DieSound;
-    [SerializeField] private bool IsAttacking;
-    [SerializeField] private bool hasAttackedSomeone;
-    [SerializeField] private int attackID;
-    [SerializeField] private int enemyLastAttackID;
-
 
     private void OnEnable()
     {
         HP = MaxHp;
     }
 
-
-
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
-    // Use this for initialization
-    void Start () {
-        IsAttacking = false;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
     public float GetHP()
     {
@@ -101,42 +86,6 @@ public class CombatStats : MonoBehaviour {
                     Defense = 0;
                 break;
         }
-    }
-
-    public bool GetIsAttacking()
-    {
-        return IsAttacking;
-    }
-    public void SetIsAttacking(bool IsAttacking)
-    {
-        this.IsAttacking = IsAttacking;
-    }
-
-    public bool GetHasAttackedSomeone()
-    {
-        return hasAttackedSomeone;
-    }
-    public void SetHasAttackedSomeone(bool hasAttackedSomeone)
-    {
-        this.hasAttackedSomeone = hasAttackedSomeone;
-    }
-
-    public int GetAttackID()
-    {
-        return attackID;
-    }
-    public void SetAttackID(int attackID)
-    {
-        this.attackID = attackID;
-    }
-
-    public int GetEnemyLastAttackID()
-    {
-        return enemyLastAttackID;
-    }
-    public void SetEnemyLastAttackID(int enemyLastAttackID)
-    {
-        this.enemyLastAttackID = enemyLastAttackID;
     }
 
     public virtual void Die()

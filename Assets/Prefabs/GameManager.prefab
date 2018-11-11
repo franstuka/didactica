@@ -63,4 +63,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0dcb25a504b2e40af946d38046a6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialItems:
+  - {fileID: 11400000, guid: c7dd018ed6fc6e3419254d67110cadff, type: 2}
+  - {fileID: 11400000, guid: c30f7133d9bb8594091355d48fd949f6, type: 2}
+  - {fileID: 11400000, guid: 764c9398ee161c64dac7bec383b99271, type: 2}
+  - {fileID: 11400000, guid: 54c78bfde53f9614eadff51c40c63f9a, type: 2}
+  - {fileID: 11400000, guid: 7e41e745182885a40ad29362b2b88314, type: 2}
+  - {fileID: 11400000, guid: a1c81797e2d4a934f80fec68a7edac9e, type: 2}
+  - {fileID: 11400000, guid: 541dffc8e9fb613468d94021cc230abc, type: 2}
+  - {fileID: 11400000, guid: f0c8787c85122074c85d35f7bd14a092, type: 2}
+  - {fileID: 11400000, guid: b6b404cfcd78ff548b6858c54b7cb39d, type: 2}
+  - {fileID: 11400000, guid: 716a5639af4eda74c8252ceb9c00056f, type: 2}
+  - {fileID: 11400000, guid: c062d0312efc8cf4eae01bc481aff04d, type: 2}
+  - {fileID: 11400000, guid: 3a2bcba1cbf5b1f4ba0d68c9443cee65, type: 2}
   menu: {fileID: 0}

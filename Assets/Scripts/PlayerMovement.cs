@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : CombatStats
+{
 
     public int movementsAvaible = 0;
-    [SerializeField] private int startingMoves = 100;
     [SerializeField] Navegation nav;
     
 
     private void Start()
     {
-        movementsAvaible = startingMoves;
         nav = GetComponent<Navegation>();
     }
 

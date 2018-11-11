@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 65310775759227986}
   - component: {fileID: 54711536992359712}
   - component: {fileID: 114326071880540214}
-  - component: {fileID: 114099203038819132}
   - component: {fileID: 114348807379902372}
   m_Layer: 0
   m_Name: Player
@@ -115,29 +114,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114099203038819132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341827706879050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42cc35c284f02f84387d8ed13ce4fc8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHp: 1
-  HP: 1
-  Damage: 0
-  Defense: 0
-  anim: {fileID: 0}
-  DoDamageSound: {fileID: 0}
-  GetDamageSound: {fileID: 0}
-  DieSound: {fileID: 0}
-  IsAttacking: 0
-  hasAttackedSomeone: 0
-  attackID: 0
-  enemyLastAttackID: 0
 --- !u!114 &114326071880540214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29aa4feb41f1f3f4a91cb0a6deccd3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 1
+  HP: 1
+  Damage: 0
+  Defense: 0
+  anim: {fileID: 0}
+  DoDamageSound: {fileID: 0}
+  GetDamageSound: {fileID: 0}
+  DieSound: {fileID: 0}
   movementsAvaible: 0
-  startingMoves: 100
   nav: {fileID: 0}

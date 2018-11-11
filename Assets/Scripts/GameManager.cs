@@ -39,7 +39,17 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
+    private const int startPlayerHp = 5;
+    private const int startLevel = 1;
+    [SerializeField] List<Item> initialItems = new List<Item>();
+
+
     [SerializeField] private PauseMenuScript menu;
+
+    private void Start()
+    {
+        InicialicePlayerData();
+    }
 
     public void EndLevelLost()
     {
@@ -83,6 +93,48 @@ public class GameManager : MonoBehaviour {
 
     public void InicialicePlayerData()
     {
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
 
+        if(player != null)
+        {
+            player.GetComponent<PlayerMovement>().movementsAvaible = GetLevelMovements(startLevel);
+            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, startPlayerHp);
+            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP, startPlayerHp);
+        }
+        else
+        {
+            Debug.LogError("Cant find player on initialization");
+        }
+        if(InventarySystem.instance != null)
+        {
+            for (int i = 0; i < initialItems.Count; i++)
+            {
+                InventarySystem.instance.AddNewElement(initialItems[i]);
+            }
+        }
+        else
+        {
+            Debug.LogError("Cant find inventory on initialization");
+        }
     }
+
+    private int GetLevelMovements(int level) //level movements setup
+    {
+        switch(level)
+        {
+            case 1:
+            {
+                return 30;
+            }
+            case 2:
+            {
+                return 40;
+            }
+            default:
+            {
+                return 50;
+            }
+        }
+    }
+
 }

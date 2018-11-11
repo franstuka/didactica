@@ -40,17 +40,9 @@ public class InventarySystem : MonoBehaviour
              */
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    //Sección de prueba   
+
     public List<Card> GetCardList()
     {
-        cardList.Add(new Card(10));
-        cardList.Add(new Card(20));
-        cardList.Add(new Card(30));
-        cardList.Add(new Card(40));
-        cardList.Add(new Card(50));
-        cardList.Add(new Card(60));
-        cardList.Add(new Card(70));
         return cardList;
     }
 
