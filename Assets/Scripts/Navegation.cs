@@ -149,12 +149,11 @@ public class Navegation : MonoBehaviour {
         }
     }
 
-
     public void Move(Vector3 position)
     {
         float velZ = rigidbody.velocity.z;
         float velX = rigidbody.velocity.x;
-        float correctionSpin = Vector3.SignedAngle(transform.forward, position - transform.position, transform.up);
+        //float correctionSpin = Vector3.SignedAngle(transform.forward, position - transform.position, transform.up);
 
         #region nonsimpleMode
         if (!simpleMode)
@@ -218,7 +217,7 @@ public class Navegation : MonoBehaviour {
             else
             {
                 //movement
-                float correctionAcceleration = Mathf.Abs(-velX / Time.deltaTime) > maxCorrectionAcceleration ? maxCorrectionAcceleration : -velX / Time.deltaTime;
+                //float correctionAcceleration = Mathf.Abs(-velX / Time.deltaTime) > maxCorrectionAcceleration ? maxCorrectionAcceleration : -velX / Time.deltaTime;
                 Vector2 toTarget = new Vector2(position.x - transform.position.x, position.z - transform.position.z).normalized;
                 Vector2 toSpeed = new Vector2(velX, velZ).normalized;
 

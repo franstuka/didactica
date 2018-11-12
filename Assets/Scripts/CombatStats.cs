@@ -5,10 +5,10 @@ using UnityEngine;
 public class CombatStats : MonoBehaviour {
 
     public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE, LIGHTVISION };
-    [SerializeField] private float MaxHp = 0;
-    [SerializeField] private float HP = 0;
-    [SerializeField] private float Damage = 0;
-    [SerializeField] private float Defense = 0;
+    [SerializeField] private int MaxHp = 0;
+    [SerializeField] private int HP = 0;
+    [SerializeField] private int Damage = 0;
+    [SerializeField] private int Defense = 0;
 
     public Animator anim;
     
@@ -26,9 +26,14 @@ public class CombatStats : MonoBehaviour {
         anim = GetComponent<Animator>();
     }
 
-    public float GetHP()
+    public int GetHP()
     {
         return HP;
+    }
+
+    public int GetMaxHP()
+    {
+        return MaxHp;
     }
 
     public virtual float GetDamage()
@@ -41,7 +46,7 @@ public class CombatStats : MonoBehaviour {
         return Defense;
     }
 
-    public virtual void ChangeStats(CombatStatsType state , float valor)
+    public virtual void ChangeStats(CombatStatsType state , int valor)
     {
         switch((int)state)
         {

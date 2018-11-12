@@ -39,16 +39,16 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    private const int startPlayerHp = 5;
-    private const int startLevel = 1;
     [SerializeField] List<Item> initialItems = new List<Item>();
-
-
     [SerializeField] private PauseMenuScript menu;
+
+    private const int startPlayerHp = 5;
+
+    private int actualLevel;
 
     private void Start()
     {
-        InicialicePlayerData();
+        InicialiceFirstLevelPlayerData(1);
     }
 
     public void EndLevelLost()
@@ -91,13 +91,14 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void InicialicePlayerData()
+    public void InicialiceFirstLevelPlayerData(int level)
     {
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        actualLevel = level;
 
-        if(player != null)
+        if (player != null)
         {
-            player.GetComponent<PlayerMovement>().movementsAvaible = GetLevelMovements(startLevel);
+            player.GetComponent<PlayerMovement>().movementsAvaible = GetLevelMovements(level);
             player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, startPlayerHp);
             player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP, startPlayerHp);
         }
@@ -135,6 +136,11 @@ public class GameManager : MonoBehaviour {
                 return 50;
             }
         }
+    }
+
+    public int GetActualLevel()
+    {
+        return actualLevel;
     }
 
 }
