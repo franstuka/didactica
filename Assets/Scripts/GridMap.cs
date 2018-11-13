@@ -52,11 +52,15 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private int gridSizeX;
     private int gridSizeY;
 
-    //[SerializeField] private GameObject number0;
-    //[SerializeField] private GameObject number1;
-    [SerializeField] private GameObject numberText;
+    [SerializeField] private GameObject number0;
+    [SerializeField] private GameObject number1;
+    [SerializeField] private GameObject number2;
+    [SerializeField] private GameObject number3;
+    [SerializeField] private GameObject number4;
+    [SerializeField] private GameObject number5;
+    //[SerializeField] private GameObject numberText;
 
-    
+
     private void Start()
     {
         UpdateEnemyPositions();
@@ -100,8 +104,13 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void ShowNumbers()
     {
-        /*number0.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
-        number1.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);        
+        number0.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        number1.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        number2.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        number3.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        number4.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        number5.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+
         for (int x = 0; x < gridSizeX; x++)
         {
             for(int y = 0; y < gridSizeY; y++)
@@ -111,26 +120,51 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
                     GameObject clone = Instantiate(number0);
                     clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
                 }
+
                 else if (grid[x, y].Cost == 1)
                 {
                     GameObject clone = Instantiate(number1);
                     clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
                 }
+
+                else if (grid[x, y].Cost == 2)
+                {
+                    GameObject clone = Instantiate(number2);
+                    clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                }
+
+                else if (grid[x, y].Cost == 3)
+                {
+                    GameObject clone = Instantiate(number3);
+                    clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                }
+
+                else if (grid[x, y].Cost == 4)
+                {
+                    GameObject clone = Instantiate(number4);
+                    clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                }
+
+                else if (grid[x, y].Cost == 5)
+                {
+                    GameObject clone = Instantiate(number5);
+                    clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                }
             }
-        }*/
-        
+        }
+
+        /*numberText.transform.localScale = new Vector3(1 / WorldSize.x * 2, 1 / WorldSize.y * 2, 1);
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
                 GameObject clone = Instantiate(numberText);               
-                clone.transform.localScale = new Vector3(1 / WorldSize.x * 2, 1 / WorldSize.y * 2, 1);
                 clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
 
                 TextMesh textMesh = clone.GetComponent<TextMesh>();
                 textMesh.text = "" + grid[x, y].Cost;                
             }
-        }
+        }*/
     }
 
     private void UpdateEnemyPositions()
