@@ -15,7 +15,7 @@ public class SaveDataManager : MonoBehaviour {
     //Scene items to save
     public Transform playerPositionOnScene;
     public List<GameObject> enemiesPosition;
-    public List<Vector3> enemyTargetMovement;
+    //public List<Vector3> enemyTargetMovement; //maybe not necesary
     public List<GameObject> staticItemsInScene; //like chest etc
     public int sceneLevel; //just for error control
 
@@ -24,7 +24,7 @@ public class SaveDataManager : MonoBehaviour {
         maxLevel = 1;
         inventoryStored = new List<Item>();
         enemiesPosition = new List<GameObject>();
-        enemyTargetMovement = new List<Vector3>();
+        //enemyTargetMovement = new List<Vector3>();
         staticItemsInScene = new List<GameObject>();
     }
 
@@ -85,7 +85,24 @@ public class SaveDataManager : MonoBehaviour {
 
     public void SaveLevelData()
     {
+        //get info
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        EnemyCombat[] enemies = FindObjectsOfType<EnemyCombat>();
+        List<GameObject> enemiesList = new List<GameObject>();
+        //Chest[] chests = FindObjectsOfType<Chest>();
+        //List<GameObject> chestList = new List<GameObject>();
+        sceneLevel = GameManager.instance.GetActualLevel();
 
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemiesList.Add(enemies[i].gameObject);
+        }
+        /*
+        for (int i = 0; i < chest.Length; i++)
+        {
+            chestList.Add(chest[i].gameObject);
+        }*/
+        //save info
     }
 
     public void LoadPlayerData(bool loadInventory)
