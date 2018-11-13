@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour {
     private const int startPlayerHp = 5;
 
     private int actualLevel;
+    private bool onCombat;
+    private bool onCombatSceneChange;
 
     private void Start()
     {
@@ -75,18 +77,45 @@ public class GameManager : MonoBehaviour {
 
     public void OnCombatEnter()
     {
-        saveDataManager.LoadPlayerData(false);
+        onCombat = true;
+        onCombatSceneChange = true;
+        saveDataManager.SavePlayerData();
+        saveDataManager.SaveLevelData();
+        ChangeScene("Combat");//TEST
+    }
+
+    public void OnCombatFinish()
+    {
+        onCombat = false;
+        saveDataManager.SavePlayerData();
+        ChangeScene("SampleScene"); //TEST
     }
 
     public void ReturnToLevelScene()
     {
-        saveDataManager.LoadPlayerData(false);
+        onCombatSceneChange = false;
+        saveDataManager.LoadPlayerData(true);
+        saveDataManager.LoadLevelData();
     }
 
     public void OnSceneExit()
     {
         saveDataManager.SavePlayerData();
         saveDataManager.SaveLevelData();
+    }
+
+    public void OnLevelEnded(bool changeToNextLevel)
+    {
+        saveDataManager.UpdateForNextLevel(changeToNextLevel);
+        OnSceneExit();
+        if(changeToNextLevel)
+        {
+            //ChangeScene("levelName");
+        }
+        else
+        {
+            //ChangeScene("MainMenu");
+        }
     }
 
     public void SaveAndQuit()
@@ -156,5 +185,20 @@ public class GameManager : MonoBehaviour {
     public void SetActualLevel(int level)
     {
         actualLevel = level;
+    }
+
+    public bool GetOnCombat()
+    {
+        return onCombat;
+    }
+
+    public void SetOnCombat(bool state)
+    {
+        onCombat = state;
+    }
+
+    public bool GetOnCombatSceneChange()
+    {
+        return onCombatSceneChange;
     }
 }

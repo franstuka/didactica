@@ -19,7 +19,10 @@ public class PlayerMovement : CombatStats
 
         if (movementsAvaible <= 0 && nav.GetStopped())
         {
-            //enter combat
+            if(!GameManager.instance.GetOnCombat()) //Enter in combat
+            {
+                GameManager.instance.OnCombatEnter();
+            }
         }
         else if(Input.GetMouseButtonDown(0))
         {

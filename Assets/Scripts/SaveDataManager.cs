@@ -88,6 +88,7 @@ public class SaveDataManager : MonoBehaviour {
     {
         //get info
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        playerPositionOnScene = player.transform;
         EnemyCombat[] enemies = FindObjectsOfType<EnemyCombat>();
         List<GameObject> enemiesList = new List<GameObject>();
         //Chest[] chests = FindObjectsOfType<Chest>();
@@ -152,11 +153,6 @@ public class SaveDataManager : MonoBehaviour {
         }
         else
             Debug.LogError("Something is going grong on load level");
-        /*/
-         Transform playerPositionOnScene;
-         List<GameObject> enemiesPosition;
-         List<GameObject> staticItemsInScene; //like chest etc
-         int sceneLevel; //just for error control*/
     }
 
     public void SaveOnPersistent()
