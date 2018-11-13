@@ -194,9 +194,5 @@ MonoBehaviour:
   enemySelected: {fileID: 0}
   WorldSize: {x: 30, y: 30}
   CellRadius: 0.25
-  number0: {fileID: 1372768932504028, guid: bf3ef0d0f2ba3b34e9180c7c2976f1ee, type: 2}
-  number1: {fileID: 1718374766897816, guid: d35d5ea8add333c4cb38dfc671c57b9f, type: 2}
-  number2: {fileID: 1370509414152356, guid: 2e11d7ba6fc9333428fe5e91de538b27, type: 2}
-  number3: {fileID: 1464733596074162, guid: 9bf5f1d5ce2181043846a0d40b33a5c9, type: 2}
-  number4: {fileID: 1808626136744618, guid: 4ae08dee7576a07439b0137fa8fd4344, type: 2}
-  number5: {fileID: 1667946080924016, guid: 9eb352ea9c4f86a4c8ebdcea40a8d016, type: 2}
+  numberText: {fileID: 1817076794343666, guid: 0893c450d20168b49b7a4fcb4110a256, type: 2}
+  camera: {fileID: 0}
