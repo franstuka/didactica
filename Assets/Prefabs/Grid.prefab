@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4898317575057572}
   - component: {fileID: 114553855059909426}
+  - component: {fileID: 33737021373708154}
+  - component: {fileID: 23746036812092330}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -66,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1842899529401730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children:
   - {fileID: 4628719944792774}
   m_Father: {fileID: 0}
@@ -107,6 +109,48 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23746036812092330
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1842899529401730}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: b3a0f7845908be9419ad059314eaa101, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 4898317575057572}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33737021373708154
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1842899529401730}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33764640199894160
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -150,3 +194,5 @@ MonoBehaviour:
   enemySelected: {fileID: 0}
   WorldSize: {x: 30, y: 30}
   CellRadius: 0.25
+  number0: {fileID: 1372768932504028, guid: bf3ef0d0f2ba3b34e9180c7c2976f1ee, type: 2}
+  number1: {fileID: 1718374766897816, guid: d35d5ea8add333c4cb38dfc671c57b9f, type: 2}

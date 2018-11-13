@@ -24,8 +24,9 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         cellDiameter = CellRadius * 2;
         gridSizeX = Mathf.RoundToInt(WorldSize.x / cellDiameter);
         gridSizeY = Mathf.RoundToInt(WorldSize.y / cellDiameter);
-        //Debug.Log(gridSizeX);
+        //Debug.Log(gridSizeX);       
         CreateGrid();
+        ShowNumbers();
     }
     #endregion
 
@@ -50,6 +51,9 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private float cellDiameter;
     private int gridSizeX;
     private int gridSizeY;
+
+    [SerializeField] private GameObject number0;
+    [SerializeField] private GameObject number1;
 
     
     private void Start()
@@ -91,6 +95,29 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
                 }
             }
         }
+    }
+
+    private void ShowNumbers()
+    {
+        number0.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        number1.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);        
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for(int y = 0; y < gridSizeY; y++)
+            { 
+                if (grid[x,y].Cost == 0)
+                {
+                    GameObject clone = Instantiate(number0);
+                    clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                }
+                else if (grid[x, y].Cost == 1)
+                {
+                    GameObject clone = Instantiate(number1);
+                    clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                }
+            }
+        }
+
     }
 
     private void UpdateEnemyPositions()
