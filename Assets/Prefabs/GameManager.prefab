@@ -108,3 +108,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e41e745182885a40ad29362b2b88314, type: 2}
   - {fileID: 11400000, guid: 764c9398ee161c64dac7bec383b99271, type: 2}
   menu: {fileID: 0}
+  actualLevel: 0
+  onCombat: 0
+  levelWasStarted: 0

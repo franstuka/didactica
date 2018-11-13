@@ -21,7 +21,21 @@ public class OnSceneEnter : MonoBehaviour {
             StartCoroutine(Fade());
         }
         if (ActivateLoadDataOnEnter)
-            StartCoroutine(LoadPlayerDataOnScene());
+        {
+            if (GameManager.instance.GetOnCombat())
+            {
+                GameManager.instance.OnSceneEnter();
+            }
+            else if (GameManager.instance.GetLevelWasStarted())
+            {
+                GameManager.instance.ReturnToLevelScene();
+            }
+            else
+            {
+                GameManager.instance.OnSceneEnter();
+            }
+        }
+            //StartCoroutine(LoadPlayerDataOnScene());
     }
 
     IEnumerator Fade()
@@ -52,11 +66,14 @@ public class OnSceneEnter : MonoBehaviour {
         {
             GameManager.instance.OnSceneEnter();
         }
-        else
+        else if(GameManager.instance.GetLevelWasStarted())
         {
             GameManager.instance.ReturnToLevelScene();
         }
-        
+        else
+        {
+            GameManager.instance.OnSceneEnter();
+        }
     }
 
 }

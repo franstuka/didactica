@@ -43,6 +43,7 @@ public class SaveDataManager : MonoBehaviour {
 
     public void SavePlayerData()
     {
+        Debug.Log("holi");
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
 
         actualLevel = GameManager.instance.GetActualLevel();
@@ -50,8 +51,8 @@ public class SaveDataManager : MonoBehaviour {
         if (player != null)
         {
             movementsAvaible = player.GetComponent<PlayerMovement>().movementsAvaible;
-            playerHP = player.GetComponent<PlayerMovement>().GetHP();
             playerMaxHP = player.GetComponent<PlayerMovement>().GetMaxHP();
+            playerHP = player.GetComponent<PlayerMovement>().GetHP();
         }
         else
         {
@@ -116,8 +117,8 @@ public class SaveDataManager : MonoBehaviour {
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().movementsAvaible = movementsAvaible;
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP , playerHP);
             player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, playerMaxHP);
+            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP , playerHP);       
         }
         else
         {

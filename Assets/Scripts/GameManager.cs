@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
         }
         if(error)
         {
+            Debug.Log(actualLevel);
             Destroy(gameObject);
             return;
         }
@@ -45,9 +46,9 @@ public class GameManager : MonoBehaviour {
 
     private const int startPlayerHp = 5;
 
-    private int actualLevel;
-    private bool onCombat;
-    private bool onCombatSceneChange;
+    public int actualLevel;
+    public bool onCombat;
+    public bool levelWasStarted;
 
     private void Start()
     {
@@ -72,13 +73,13 @@ public class GameManager : MonoBehaviour {
 
     public void OnSceneEnter()
     {
+        levelWasStarted = true;
         saveDataManager.LoadPlayerData(false);
     }
 
     public void OnCombatEnter()
     {
         onCombat = true;
-        onCombatSceneChange = true;
         saveDataManager.SavePlayerData();
         saveDataManager.SaveLevelData();
         ChangeScene("Combat");//TEST
@@ -93,7 +94,6 @@ public class GameManager : MonoBehaviour {
 
     public void ReturnToLevelScene()
     {
-        onCombatSceneChange = false;
         saveDataManager.LoadPlayerData(true);
         saveDataManager.LoadLevelData();
     }
@@ -106,8 +106,9 @@ public class GameManager : MonoBehaviour {
 
     public void OnLevelEnded(bool changeToNextLevel)
     {
+        levelWasStarted = false;
         saveDataManager.UpdateForNextLevel(changeToNextLevel);
-        OnSceneExit();
+        saveDataManager.SavePlayerData();
         if(changeToNextLevel)
         {
             //ChangeScene("levelName");
@@ -156,6 +157,7 @@ public class GameManager : MonoBehaviour {
         {
             Debug.LogError("Cant find inventory on initialization");
         }
+        OnSceneExit();
     }
 
     private int GetLevelMovements(int level) //level movements setup
@@ -164,7 +166,7 @@ public class GameManager : MonoBehaviour {
         {
             case 1:
             {
-                return 30;
+                return 5;
             }
             case 2:
             {
@@ -197,8 +199,13 @@ public class GameManager : MonoBehaviour {
         onCombat = state;
     }
 
-    public bool GetOnCombatSceneChange()
+    public bool GetLevelWasStarted()
     {
-        return onCombatSceneChange;
+        return levelWasStarted;
+    }
+
+    public void SetLevelWasStarted(bool value)
+    {
+        levelWasStarted = value;
     }
 }
