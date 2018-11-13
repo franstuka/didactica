@@ -60,8 +60,6 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private CameraIsMoving cameraIsMoving;
     GameObject[,] clones;
 
-
-
     private void Start()
     {
         cameraIsMoving = GetComponent<CameraIsMoving>();
@@ -73,8 +71,10 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private void Update()
     {
         UpdateEnemyPositions();
-        if(cameraIsMoving.isMoving)
-        ChangeTextRotation();
+        if (cameraIsMoving.isMoving)
+        {
+            ChangeTextRotation();
+        }
     }
 
     private void CreateGrid()
@@ -116,7 +116,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
             for (int y = 0; y < gridSizeY; y++)
             {
                 GameObject clone = Instantiate(numberText);
-                //clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius - CellRadius / 4, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius / 2 + CellRadius);
+                clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
                 clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
 
                 TextMeshPro textMesh = clone.GetComponent<TextMeshPro>();
@@ -144,15 +144,15 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     }
 
     private void ChangeTextRotation()
-    {        
+    {       
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
-            {
-                clones[x, y].transform.LookAt(Camera.main.transform);
-                clones[x, y].transform.localPosition = new Vector3(clones[x, y].transform.localPosition.x, 0.2f, clones[x, y].transform.localPosition.z);
-             }
-        }       
+            {                
+                clones[x,y].transform.rotation = Camera.main.transform.rotation;
+            }
+        }        
+
     }
 
     private void CleanNonStaticElementsOnGrid()
