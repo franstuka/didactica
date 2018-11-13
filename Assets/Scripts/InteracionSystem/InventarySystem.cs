@@ -27,8 +27,6 @@ public class InventarySystem : MonoBehaviour
     public List<CardOperation> cardOperationList = new List<CardOperation>();
     [SerializeField] private PickUpText text;
 
-    
-
     public void AddNewElement(Item item)
     {
 
@@ -67,5 +65,12 @@ public class InventarySystem : MonoBehaviour
     public List<Item> GetInventoryItems()
     {
         return inventory;
+    }
+
+    public void ClearAllInventory()
+    {
+         inventory.Clear();
+         cardList.Clear();
+         cardOperationList.Clear();
     }
 }

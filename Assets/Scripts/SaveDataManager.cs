@@ -37,6 +37,7 @@ public class SaveDataManager : MonoBehaviour {
         if (addOneToActualLevel)
         {
             actualLevel++;
+            sceneLevel++;
         }
     }
 
@@ -107,17 +108,60 @@ public class SaveDataManager : MonoBehaviour {
 
     public void LoadPlayerData(bool loadInventory)
     {
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
 
+        GameManager.instance.SetActualLevel(actualLevel);
+
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().movementsAvaible = movementsAvaible;
+            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP , playerHP);
+            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, playerMaxHP);
+        }
+        else
+        {
+            Debug.LogError("Cant find player on LoadData");
+        }
+        if (loadInventory && InventarySystem.instance != null)
+        {
+            InventarySystem.instance.ClearAllInventory();
+
+            for (int i = 0; i < inventoryStored.Count; i++)
+            {
+                InventarySystem.instance.AddNewElement(inventoryStored[i]);
+            }
+        }
+        else if(InventarySystem.instance == null)
+            Debug.LogError("Cant find inventory on SaveData");
     }
 
     public void LoadLevelData()
     {
-
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        if(player != null && sceneLevel == actualLevel)
+        {
+            player.transform.SetPositionAndRotation(playerPositionOnScene.position,playerPositionOnScene.rotation);
+            for (int i = 0; i < enemiesPosition.Count; i++)
+            {
+                Instantiate(enemiesPosition[i]);
+            }
+            for (int i = 0; i < staticItemsInScene.Count; i++)
+            {
+                Instantiate(staticItemsInScene[i]);
+            }
+        }
+        else
+            Debug.LogError("Something is going grong on load level");
+        /*/
+         Transform playerPositionOnScene;
+         List<GameObject> enemiesPosition;
+         List<GameObject> staticItemsInScene; //like chest etc
+         int sceneLevel; //just for error control*/
     }
 
     public void SaveOnPersistent()
     {
-
+        //Application.persistentDataPath
     }
 
     public void LoadInPersistent()

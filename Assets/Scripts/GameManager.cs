@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -61,34 +62,43 @@ public class GameManager : MonoBehaviour {
         menu.win.StartFade();
     }
 
+    public void OnOpenGame()
+    {
+        saveDataManager.LoadInPersistent();
+        saveDataManager.LoadPlayerData(true);
+    }
+
     public void OnSceneEnter()
     {
-
+        saveDataManager.LoadPlayerData(false);
     }
 
     public void OnCombatEnter()
     {
-
+        saveDataManager.LoadPlayerData(false);
     }
 
     public void ReturnToLevelScene()
     {
-
+        saveDataManager.LoadPlayerData(false);
     }
 
     public void OnSceneExit()
     {
-
+        saveDataManager.SavePlayerData();
+        saveDataManager.SaveLevelData();
     }
 
     public void SaveAndQuit()
     {
-
+        saveDataManager.SavePlayerData();
+        saveDataManager.SaveLevelData();
+        saveDataManager.SaveOnPersistent();
     }
 
     public void ChangeScene(string sceneName)
     {
-
+        SceneManager.LoadScene(sceneName);
     }
 
     public void InicialiceFirstLevelPlayerData(int level)
@@ -143,4 +153,8 @@ public class GameManager : MonoBehaviour {
         return actualLevel;
     }
 
+    public void SetActualLevel(int level)
+    {
+        actualLevel = level;
+    }
 }
