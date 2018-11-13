@@ -52,8 +52,9 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private int gridSizeX;
     private int gridSizeY;
 
-    [SerializeField] private GameObject number0;
-    [SerializeField] private GameObject number1;
+    //[SerializeField] private GameObject number0;
+    //[SerializeField] private GameObject number1;
+    [SerializeField] private GameObject numberText;
 
     
     private void Start()
@@ -99,7 +100,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void ShowNumbers()
     {
-        number0.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
+        /*number0.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);
         number1.transform.localScale = new Vector3(1 / WorldSize.x, 1f, 1 / WorldSize.y);        
         for (int x = 0; x < gridSizeX; x++)
         {
@@ -116,8 +117,20 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
                     clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
                 }
             }
-        }
+        }*/
+        
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                GameObject clone = Instantiate(numberText);               
+                clone.transform.localScale = new Vector3(1 / WorldSize.x * 2, 1 / WorldSize.y * 2, 1);
+                clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
 
+                TextMesh textMesh = clone.GetComponent<TextMesh>();
+                textMesh.text = "" + grid[x, y].Cost;                
+            }
+        }
     }
 
     private void UpdateEnemyPositions()
