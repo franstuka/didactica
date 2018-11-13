@@ -6,7 +6,7 @@ public class CombatManager : MonoBehaviour {
 
     private InventarySystem inventarySystem;
     private MonsterSystem monsterSystem;
-    private Level level;
+    private int level;
 
     private List<Card> cardList = new List<Card>();
     private List<Card> cardListCombat = new List<Card>();
@@ -24,17 +24,17 @@ public class CombatManager : MonoBehaviour {
     void Start () {
         inventarySystem = GetComponent<InventarySystem>();
         monsterSystem = GetComponent<MonsterSystem>();
-        level = GetComponent<Level>();        
+        level = GameManager.instance.GetActualLevel();        
 
         cardList = inventarySystem.GetCardList();
         cardOperationListCombat = inventarySystem.GetCardOperationList();        
         monsterList = monsterSystem.GetMonsterList();        
 
         //Probabilidades de las cartas
-        sumProbability = 50.0f - level.GetLevel();
-        substractionProbability = 50.0f - level.GetLevel();
-        multiplyProbability = 0.0f + level.GetLevel();
-        divideProbability = 0.0f + level.GetLevel();
+        sumProbability = 50.0f - level;
+        substractionProbability = 50.0f - level;
+        multiplyProbability = 0.0f + level;
+        divideProbability = 0.0f + level;
 
         //Elección de las 6 cartas
         for (int i = 0; i < 6; i++)
