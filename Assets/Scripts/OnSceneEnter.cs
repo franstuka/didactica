@@ -21,21 +21,7 @@ public class OnSceneEnter : MonoBehaviour {
             StartCoroutine(Fade());
         }
         if (ActivateLoadDataOnEnter)
-        {
-            if (GameManager.instance.GetOnCombat())
-            {
-                GameManager.instance.OnSceneEnter();
-            }
-            else if (GameManager.instance.GetLevelWasStarted())
-            {
-                GameManager.instance.ReturnToLevelScene();
-            }
-            else
-            {
-                GameManager.instance.OnSceneEnter();
-            }
-        }
-            //StartCoroutine(LoadPlayerDataOnScene());
+            StartCoroutine(LoadPlayerDataOnScene());
     }
 
     IEnumerator Fade()

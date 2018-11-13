@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour {
         }
         if(error)
         {
-            Debug.Log(actualLevel);
             Destroy(gameObject);
             return;
         }
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour {
     {
         onCombat = false;
         saveDataManager.SavePlayerData();
-        ChangeScene("SampleScene"); //TEST
+        ChangeScene("SampleScene void"); //TEST
     }
 
     public void ReturnToLevelScene()

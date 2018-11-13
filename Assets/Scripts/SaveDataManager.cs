@@ -13,7 +13,8 @@ public class SaveDataManager : MonoBehaviour {
     public List<Item> inventoryStored;
 
     //Scene items to save
-    public Transform playerPositionOnScene;
+    public Vector3 playerPositionOnScene;
+    public Quaternion playerRotationOnScene;
     public List<GameObject> enemiesPosition;
     //public List<Vector3> enemyTargetMovement; //maybe not necesary
     public List<GameObject> staticItemsInScene; //like chest etc
@@ -43,7 +44,6 @@ public class SaveDataManager : MonoBehaviour {
 
     public void SavePlayerData()
     {
-        Debug.Log("holi");
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
 
         actualLevel = GameManager.instance.GetActualLevel();
@@ -89,11 +89,14 @@ public class SaveDataManager : MonoBehaviour {
     {
         //get info
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
-        playerPositionOnScene = player.transform;
+        playerPositionOnScene = player.transform.position;
+        playerRotationOnScene = player.transform.rotation;
+        ////////////////////NEEDS TO BE REWORKED LIKE RYZE ////////////////////////////
         EnemyCombat[] enemies = FindObjectsOfType<EnemyCombat>();
         List<GameObject> enemiesList = new List<GameObject>();
         //Chest[] chests = FindObjectsOfType<Chest>();
         //List<GameObject> chestList = new List<GameObject>();
+        //////////////////////
         sceneLevel = GameManager.instance.GetActualLevel();
 
         for (int i = 0; i < enemies.Length; i++)
@@ -142,7 +145,7 @@ public class SaveDataManager : MonoBehaviour {
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
         if(player != null && sceneLevel == actualLevel)
         {
-            player.transform.SetPositionAndRotation(playerPositionOnScene.position,playerPositionOnScene.rotation);
+            player.transform.SetPositionAndRotation(playerPositionOnScene,playerRotationOnScene);
             for (int i = 0; i < enemiesPosition.Count; i++)
             {
                 Instantiate(enemiesPosition[i]);
