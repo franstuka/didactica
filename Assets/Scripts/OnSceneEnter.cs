@@ -7,7 +7,6 @@ public class OnSceneEnter : MonoBehaviour {
     public Image BlackImage;
     public float FadeTime;
     public bool ActivateFade = true;
-    public bool ActivateLoadDataOnEnter = false;
     private bool isFading = true;
     private float alpha = 1;
     private float alphaSpeed;
@@ -20,8 +19,6 @@ public class OnSceneEnter : MonoBehaviour {
             alphaSpeed = 1 / FadeTime;
             StartCoroutine(Fade());
         }
-        if (ActivateLoadDataOnEnter)
-            StartCoroutine(LoadPlayerDataOnScene());
     }
 
     IEnumerator Fade()
@@ -45,21 +42,4 @@ public class OnSceneEnter : MonoBehaviour {
         isFading = true;
         Destroy(gameObject);
     }
-    IEnumerator LoadPlayerDataOnScene()
-    {
-        yield return new WaitForEndOfFrame();
-        if(GameManager.instance.GetOnCombat())
-        {
-            GameManager.instance.OnSceneEnter();
-        }
-        else if(GameManager.instance.GetLevelWasStarted())
-        {
-            GameManager.instance.ReturnToLevelScene();
-        }
-        else
-        {
-            GameManager.instance.OnSceneEnter();
-        }
-    }
-
 }
