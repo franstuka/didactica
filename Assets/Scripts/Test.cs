@@ -19,6 +19,12 @@ public class Test : MonoBehaviour {
                     Debug.LogError("ERROR ON TEST, PLAYER NOT FOUND");
                 GameManager.instance.OnCombatFinish();
             }
+            
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            GameManager.instance.ChangeScene("SampleScene");
         }
     }
 }

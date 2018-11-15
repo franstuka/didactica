@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour {
-
+    /*
     private InventarySystem inventarySystem;
     private MonsterSystem monsterSystem;
     private int level;
@@ -130,5 +130,5 @@ public class CombatManager : MonoBehaviour {
         Debug.Log("Monster: " + selectedMonster + " Life: " + monsterLife);
         
         
-    }
+    }*/
 }

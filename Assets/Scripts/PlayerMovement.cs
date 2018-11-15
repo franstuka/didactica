@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : CombatStats
 {
 
-    public int movementsAvaible = 0;
+    public int movementsAvaible = 1;
     [SerializeField] Navegation nav;
     
 

@@ -75,7 +75,8 @@ MonoBehaviour:
   actualLevel: 0
   maxLevel: 0
   inventoryStored: []
-  playerPositionOnScene: {fileID: 0}
+  playerPositionOnScene: {x: 0, y: 0, z: 0}
+  playerRotationOnScene: {x: 0, y: 0, z: 0, w: 0}
   enemiesPosition: []
   staticItemsInScene: []
   sceneLevel: 0
@@ -108,3 +109,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e41e745182885a40ad29362b2b88314, type: 2}
   - {fileID: 11400000, guid: 764c9398ee161c64dac7bec383b99271, type: 2}
   menu: {fileID: 0}
+  actualLevel: 0
+  onCombat: 0
+  levelWasStarted: 0

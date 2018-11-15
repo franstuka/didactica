@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatStats : MonoBehaviour {
 
-    public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE, LIGHTVISION };
+    public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE };
     [SerializeField] private int MaxHp = 0;
     [SerializeField] private int HP = 0;
     [SerializeField] private int Damage = 0;
@@ -87,6 +87,33 @@ public class CombatStats : MonoBehaviour {
                 break;
             case 3:
                 Defense += valor;
+                if (Defense < 0)
+                    Defense = 0;
+                break;
+        }
+    }
+    public virtual void SetStats(CombatStatsType state, int valor)
+    {
+        switch ((int)state)
+        {
+            case 0:
+                MaxHp = valor;
+                break;
+            case 1:
+                if(valor <= MaxHp)
+                    HP = valor;
+                else
+                {
+                    HP = MaxHp;
+                }
+                break;
+            case 2:
+                Damage = valor;
+                if (Damage < 0)
+                    Damage = 0;
+                break;
+            case 3:
+                Defense = valor;
                 if (Defense < 0)
                     Defense = 0;
                 break;

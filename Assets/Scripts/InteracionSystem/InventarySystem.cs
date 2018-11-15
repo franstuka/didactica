@@ -13,7 +13,7 @@ public class InventarySystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         if (instance != null)
         {
-            Debug.LogError("More than one instance of inventory is trying to active");
+            Debug.LogWarning("More than one instance of inventory is trying to active");
             return;
         }
 

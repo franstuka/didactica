@@ -5,28 +5,33 @@ using UnityEngine.AI;
 
 public class EnemyCombat : CombatStats {
 
-    //[SerializeField] protected BehaviourBase[] behaviourList; // i try to made this efficiently in global terms, but i dont found the way
-    [SerializeField] protected GameObject[] DropList;
-    [SerializeField] protected float[] DropProb;
+    public enum EnemyState { PATROL,HOLD,COMBAT, RETURNING_TO_POSITION };
+    
     //[SerializeField] protected NavMeshAgent nav;
     [SerializeField] protected Navegation nav;
     [SerializeField] protected bool staticEnemy;
-
-    [SerializeField] protected float detectionAngle;
-    //protected Rigidbody rigidbody;
-    private float dropOffsetZ = 0.25f;
-    private float dropOffsetY = 1f;
+    [SerializeField] private float offsetDistance = 0.15f;
+    //card probabilities
+    [SerializeField] private float sumProbability;
+    [SerializeField] private float substractionProbability;
+    [SerializeField] private float multiplyProbability;
+    [SerializeField] private float divideProbability;
+    [SerializeField] private int numSteepsWinOnDefeat = 10;
+    [SerializeField] private int monsterLevel = 1;
+    //Enemy Behaviours
+    public EnemyState activeState;
+    private Hold hold;
+    private Patrol patrol;
+    private Vector3 target;
 
     private void Awake()
     {
+        hold = GetComponent<Hold>();
+        patrol = GetComponent<Patrol>();
         nav = GetComponent<Navegation>();
-        //rigidbody = GetComponent<Rigidbody>();
-
-        if (DropList.Length != DropProb.Length)
-        {
-            Debug.LogError("DropList and DropProb don´t match in size");
-        }
     }
+
+    #region See to something functions
 
     protected bool FaceAndCheckObjective(Vector3 targetPos, float stoppingPrecision) //Estos 2 metodos son para girar el enemigo y hacer que mire hace cualquier sitio
         //el primero comprueba si el enemigo esta dentro del rango de vision, el segundo simplemente este objeto hacia el objetivo
@@ -56,25 +61,94 @@ public class EnemyCombat : CombatStats {
         return Quaternion.Euler(vector3);
     }
 
-    protected void DropItem()
+    #endregion
+
+    private void Start()
     {
-        float valueSum = 0;
-        float randomValue = Random.value * 100f;
-        for (int i = 0; i < DropProb.Length; i++)
-        {
-            valueSum += DropProb[i];
-            if (valueSum >= randomValue)
-            {
-                GameObject spawnThis = Instantiate(DropList[i], transform.position, transform.rotation);
-                spawnThis.transform.position += spawnThis.transform.TransformVector(new Vector3(0, dropOffsetY / spawnThis.transform.lossyScale.y, dropOffsetZ / spawnThis.transform.lossyScale.z));
-                break;
-            }
-        }
+        target = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        StartCoroutine(WaitEndFrameToStartIA());
     }
 
     public LinkedList<Vector2Int> GetSavedPath()
     {
         return nav.GetSavedPath();
     }
-    
+
+    private void Update()
+    {
+        EnemyStateMachine();
+        UpdateAnimator();
+    }
+
+    private void EnemyStateMachine()
+    {
+        switch (activeState)
+        {
+            case EnemyState.COMBAT:
+                {
+                    break;
+                }
+            case EnemyState.PATROL:
+                {
+                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    {
+                        target = patrol.GetNewWaipoint(target);
+                        nav.SetDestination(target);
+                    }
+                    break;
+                }
+            case EnemyState.HOLD:
+                {
+                    if (!FaceAndCheckObjective(hold.DirectionToFace(), 2f))
+                    {
+                        activeState = EnemyState.RETURNING_TO_POSITION;
+                    }
+                    break;
+                }
+            case EnemyState.RETURNING_TO_POSITION:
+                {
+                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    {
+                        if (FaceAndCheckObjective(hold.DirectionToFace(), 2f))
+                        {
+                            activeState = EnemyState.HOLD;
+                        }
+                        else
+                        {
+                            FaceObjective(hold.DirectionToFace());
+                        }
+                    }
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+    }
+
+    private void UpdateAnimator()
+    {
+
+    }
+
+    IEnumerator WaitEndFrameToStartIA()
+    {
+        yield return new WaitForEndOfFrame();
+        if (!staticEnemy)
+        {
+            activeState = EnemyState.PATROL;
+            if (target == new Vector3(float.MaxValue, float.MaxValue, float.MaxValue))
+            {
+                target = patrol.GetNewWaipoint(target);
+            }
+            nav.SetDestination(target);
+        }
+        else
+        {
+            activeState = EnemyState.RETURNING_TO_POSITION;
+            target = hold.ReturnToPosition();
+            nav.SetDestination(target);
+        }
+    }
 }
