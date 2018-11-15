@@ -114,7 +114,7 @@ public class Calculate : MonoBehaviour {
         return resultado;
     }
 
-    private float CalculateRPN(string resultado)
+    public float CalculateRPN(string resultado)
     {
         string rpn = RPN(resultado);
         var pila = new Stack<float>();
