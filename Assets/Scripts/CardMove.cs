@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragHandler {
+	public GameObject Canvas;
 	public Vector3 startPos;
-	 public float smoothTime = 0.05F;
+	public float smoothTime = 0.05F;
     private Vector3 velocity = Vector3.zero;
 	private bool first = true;
+
+	GraphicRaycaster m_Raycaster;
+    PointerEventData m_PointerEventData;
+    EventSystem m_EventSystem;
+	
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (first ){
@@ -21,13 +28,53 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Vector3.SmoothDamp( transform.position,Input.mousePosition,ref velocity, smoothTime);
+        transform.position = Vector3.SmoothDamp( transform.position,Input.mousePosition,ref velocity, 0.1f);
 	
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-       StartCoroutine("Return");
+     
+	
+	
+	    m_PointerEventData = new PointerEventData(m_EventSystem);
+            //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = Input.mousePosition;
+		List<RaycastResult> results = new List<RaycastResult>();
+
+            //Raycast using the Graphics Raycaster and mouse click position
+        m_Raycaster.Raycast(m_PointerEventData, results);
+		foreach (RaycastResult result in results)
+        {		
+			if(result.gameObject.tag == "cartaCalculo"){
+				if(this.gameObject.tag == "carta"){
+					this.tag = "cartaCalculo";
+					this.transform.SetParent(result.gameObject.transform.parent);
+					this.transform.SetSiblingIndex(result.gameObject.transform.GetSiblingIndex());
+					result.gameObject.transform.SetSiblingIndex(result.gameObject.transform.GetSiblingIndex()+1);
+					return;
+				}
+
+				if(this.gameObject.name != result.gameObject.name ){
+
+				int indicieOriginal = this.transform.GetSiblingIndex();
+				this.transform.SetSiblingIndex(result.gameObject.transform.GetSiblingIndex());
+				result.gameObject.transform.SetSiblingIndex(indicieOriginal);
+				return;
+				}
+				
+			}
+				
+              if( result.gameObject.tag == "PanelCalculo"){
+				  this.tag = "cartaCalculo";
+				  this.transform.SetParent(result.gameObject.transform);
+				  return;
+			  }
+			  
+			  
+			  
+		}
+		StartCoroutine("Return"); 
     }
 
 	private void Awake() {
@@ -36,7 +83,9 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
 
 	// Use this for initialization
 	void Start () {
-	
+		 m_Raycaster = Canvas.GetComponent<GraphicRaycaster>();
+        //Fetch the Event System from the Scene
+        m_EventSystem = Canvas.GetComponent<EventSystem>();
 	}
 	
 	// Update is called once per frame
@@ -65,7 +114,7 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
         transform.position = newPosition;
         
         smoothTime = tiempoRetorno - correcionTiempo;
-		print (gameObject);
+	
         yield return null;
 
 		}

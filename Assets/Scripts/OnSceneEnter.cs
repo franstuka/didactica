@@ -6,6 +6,8 @@ public class OnSceneEnter : MonoBehaviour {
 
     public Image BlackImage;
     public float FadeTime;
+    public bool ActivateFade = true;
+    public bool ActivateLoadDataOnEnter = true;
     private bool isFading = true;
     private float alpha = 1;
     private float alphaSpeed;
@@ -13,15 +15,13 @@ public class OnSceneEnter : MonoBehaviour {
     // Update is called once per frame
     void Start ()
     {
-        alphaSpeed = 1 / FadeTime;
-        StartFade();
-
-    }
-
-
-    public void StartFade()
-    {
-        StartCoroutine(Fade());
+        if(ActivateFade)
+        {
+            alphaSpeed = 1 / FadeTime;
+            StartCoroutine(Fade());
+        }
+        if (ActivateLoadDataOnEnter)
+            StartCoroutine(LoadPlayerDataOnScene());
     }
 
     IEnumerator Fade()
@@ -43,6 +43,20 @@ public class OnSceneEnter : MonoBehaviour {
         } 
         alpha = 1;
         isFading = true;
+        Destroy(gameObject);
+    }
+    IEnumerator LoadPlayerDataOnScene()
+    {
+        yield return new WaitForEndOfFrame();
+        if(GameManager.instance.GetOnCombat())
+        {
+            GameManager.instance.OnSceneEnter();
+        }
+        else
+        {
+            GameManager.instance.ReturnToLevelScene();
+        }
+        
     }
 
 }
