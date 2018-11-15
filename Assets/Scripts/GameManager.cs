@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         bool error = false;
-
+        
         if (instance != null)
         {
-            Debug.LogError("More than one instance of GameManager is trying to active");
+            Debug.LogWarning("More than one instance of GameManager is trying to active");
             error = true;
         }
         if (saveDataManager != null)
         {
-            Debug.LogError("More than one instance of saveDataManager is trying to active");
+            Debug.LogWarning("More than one instance of saveDataManager is trying to active");
             error = true;
         }
         if(error)
@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour {
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadPlayerDataOnScene());
     }
 
     public void InicialiceFirstLevelPlayerData(int level)
@@ -206,5 +207,22 @@ public class GameManager : MonoBehaviour {
     public void SetLevelWasStarted(bool value)
     {
         levelWasStarted = value;
+    }
+
+    IEnumerator LoadPlayerDataOnScene() //this is used on change scene next fixed update, when escena has been changed
+    {
+        yield return new WaitForFixedUpdate();
+        if (onCombat)
+        {
+            OnSceneEnter();
+        }
+        else if (levelWasStarted)
+        {
+            ReturnToLevelScene();
+        }
+        else
+        {
+            OnSceneEnter();
+        }
     }
 }

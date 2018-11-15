@@ -1030,7 +1030,7 @@ MonoBehaviour:
   BlackImage: {fileID: 0}
   FadeTime: 0
   ActivateFade: 0
-  ActivateLoadDataOnEnter: 1
+  ActivateLoadDataOnEnter: 0
 --- !u!4 &1203587858
 Transform:
   m_ObjectHideFlags: 0

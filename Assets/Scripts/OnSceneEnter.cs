@@ -7,7 +7,7 @@ public class OnSceneEnter : MonoBehaviour {
     public Image BlackImage;
     public float FadeTime;
     public bool ActivateFade = true;
-    public bool ActivateLoadDataOnEnter = true;
+    public bool ActivateLoadDataOnEnter = false;
     private bool isFading = true;
     private float alpha = 1;
     private float alphaSpeed;
