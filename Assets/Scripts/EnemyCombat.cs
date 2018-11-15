@@ -18,6 +18,7 @@ public class EnemyCombat : CombatStats {
     [SerializeField] private float divideProbability;
     [SerializeField] private int numSteepsWinOnDefeat = 10;
     [SerializeField] private int monsterLevel = 1;
+    [SerializeField] private int numOfOperations = 2;
     //Enemy Behaviours
     public EnemyState activeState;
     private Hold hold;
@@ -127,15 +128,33 @@ public class EnemyCombat : CombatStats {
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if( other.gameObject.tag == "Player")
+        {
+            if (!GameManager.instance.GetOnCombat()) //Enter in combat
+            {
+
+                GameManager.instance.OnCombatEnter();
+            }
+        }
+    }
+
     private void UpdateAnimator()
     {
 
     }
 
+    
+
     IEnumerator WaitEndFrameToStartIA()
     {
         yield return new WaitForEndOfFrame();
-        if (!staticEnemy)
+        if(GameManager.instance.GetOnCombat())
+        {
+            activeState = EnemyState.COMBAT;
+        }
+        else if (!staticEnemy)
         {
             activeState = EnemyState.PATROL;
             if (target == new Vector3(float.MaxValue, float.MaxValue, float.MaxValue))

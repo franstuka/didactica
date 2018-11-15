@@ -76,11 +76,21 @@ public class GameManager : MonoBehaviour {
         saveDataManager.LoadPlayerData(false);
     }
 
-    public void OnCombatEnter()
+    public void OnCombatEnter() //random combat
     {
         onCombat = true;
         saveDataManager.SavePlayerData();
         saveDataManager.SaveLevelData();
+        saveDataManager.SaveEnemyData(true);
+        ChangeScene("Combat");//TEST
+    }
+
+    public void OnCombatEnter(string enemyName , int enemyLevel , Vector3 enemyPosition) //non random combat, we save enemy stuff
+    {
+        onCombat = true;
+        saveDataManager.SavePlayerData();
+        saveDataManager.SaveLevelData();
+        saveDataManager.SaveEnemyData(false, enemyName, enemyLevel, enemyPosition);
         ChangeScene("Combat");//TEST
     }
 
