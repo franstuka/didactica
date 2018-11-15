@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyCombat : CombatStats {
 
-    public enum EnemyState { PATROL,HOLD,COMBAT};
+    public enum EnemyState { PATROL,HOLD,COMBAT, RETURNING_TO_POSITION };
     
     //[SerializeField] protected NavMeshAgent nav;
     [SerializeField] protected Navegation nav;
     [SerializeField] protected bool staticEnemy;
+    [SerializeField] private float offsetDistance = 0.15f;
     //card probabilities
     [SerializeField] private float sumProbability;
     [SerializeField] private float substractionProbability;
@@ -18,13 +19,15 @@ public class EnemyCombat : CombatStats {
     [SerializeField] private int numSteepsWinOnDefeat = 10;
     [SerializeField] private int monsterLevel = 1;
     //Enemy Behaviours
-    private EnemyState activeState;
+    public EnemyState activeState;
     private Hold hold;
     private Patrol patrol;
-    
+    private Vector3 target;
 
     private void Awake()
     {
+        hold = GetComponent<Hold>();
+        patrol = GetComponent<Patrol>();
         nav = GetComponent<Navegation>();
     }
 
@@ -60,6 +63,11 @@ public class EnemyCombat : CombatStats {
 
     #endregion
 
+    private void Start()
+    {
+        target = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        StartCoroutine(WaitEndFrameToStartIA());
+    }
 
     public LinkedList<Vector2Int> GetSavedPath()
     {
@@ -69,6 +77,7 @@ public class EnemyCombat : CombatStats {
     private void Update()
     {
         EnemyStateMachine();
+        UpdateAnimator();
     }
 
     private void EnemyStateMachine()
@@ -81,16 +90,65 @@ public class EnemyCombat : CombatStats {
                 }
             case EnemyState.PATROL:
                 {
+                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    {
+                        target = patrol.GetNewWaipoint(target);
+                        nav.SetDestination(target);
+                    }
                     break;
                 }
             case EnemyState.HOLD:
                 {
+                    if (!FaceAndCheckObjective(hold.DirectionToFace(), 2f))
+                    {
+                        activeState = EnemyState.RETURNING_TO_POSITION;
+                    }
+                    break;
+                }
+            case EnemyState.RETURNING_TO_POSITION:
+                {
+                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    {
+                        if (FaceAndCheckObjective(hold.DirectionToFace(), 2f))
+                        {
+                            activeState = EnemyState.HOLD;
+                        }
+                        else
+                        {
+                            FaceObjective(hold.DirectionToFace());
+                        }
+                    }
                     break;
                 }
             default:
                 {
                     break;
                 }
+        }
+    }
+
+    private void UpdateAnimator()
+    {
+
+    }
+
+    IEnumerator WaitEndFrameToStartIA()
+    {
+        yield return new WaitForEndOfFrame();
+        if (!staticEnemy)
+        {
+            activeState = EnemyState.PATROL;
+            if (target == new Vector3(float.MaxValue, float.MaxValue, float.MaxValue))
+            {
+                target = patrol.GetNewWaipoint(target);
+            }
+            nav.SetDestination(target);
+        }
+        else
+        {
+            activeState = EnemyState.RETURNING_TO_POSITION;
+            target = hold.ReturnToPosition();
+            nav.SetDestination(target);
         }
     }
 }
