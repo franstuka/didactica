@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlackImage: {fileID: 0}
   FadeTime: 0
-  ActivateFade: 1
+  ActivateFade: 0
 --- !u!4 &1203587858
 Transform:
   m_ObjectHideFlags: 0
