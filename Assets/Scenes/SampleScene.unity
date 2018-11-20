@@ -200,7 +200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d7938a2352f26a94695b2fb621b1f6d0, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d7938a2352f26a94695b2fb621b1f6d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -297,7 +297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &262376787
 GameObject:
@@ -571,7 +571,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 26.991467
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -631,7 +631,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &626323517
 MeshCollider:
@@ -763,7 +763,7 @@ Transform:
   - {fileID: 1849726679}
   - {fileID: 1044522170}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044522169
 GameObject:
@@ -1037,7 +1037,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5afa6135d9bc96943b1a2534253bc68f, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5afa6135d9bc96943b1a2534253bc68f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1111,7 +1111,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4152603789782738, guid: 27c14e21850f2dc40b1965e684bd0820, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114905470702226162, guid: 27c14e21850f2dc40b1965e684bd0820,
         type: 2}
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlackImage: {fileID: 0}
   FadeTime: 0
-  ActivateFade: 0
+  ActivateFade: 1
 --- !u!4 &1203587858
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,7 +1252,7 @@ Transform:
   m_LocalScale: {x: 2.5989, y: 1.4763, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286450955
 GameObject:
@@ -1596,7 +1596,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4352942640413824, guid: 9e73d2ce724c40f45925ec9d8b17c31d, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114412165084453908, guid: 9e73d2ce724c40f45925ec9d8b17c31d,
         type: 2}
