@@ -169,6 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29aa4feb41f1f3f4a91cb0a6deccd3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementsAvaible: 0
   startingMoves: 100
   nav: {fileID: 0}

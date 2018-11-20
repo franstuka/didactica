@@ -939,12 +939,37 @@ Prefab:
     - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_fontStyle
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e88005341eb8d1d4e851dab1e0e142b5, type: 2}
