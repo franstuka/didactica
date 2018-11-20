@@ -7,7 +7,6 @@ public class PlayerMovement : CombatStats
 
     public int movementsAvaible = 1;
     [SerializeField] Navegation nav;
-    
 
     private void Start()
     {
@@ -36,4 +35,6 @@ public class PlayerMovement : CombatStats
         }
         
 	}
+
+  
 }

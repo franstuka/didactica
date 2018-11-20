@@ -12,6 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Combat.unity
     guid: 2395e71fd7431124bada436f25a01fe2
   - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 44467dca50e281f4da2329b5f84d9ecb
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 1ce2e88f4a9111b4581d4decc376f9ec
     path: Assets/Scenes/SampleScene void.unity
     guid: 58262e0df7390ec4680817906c0d797e
   m_configObjects: {}

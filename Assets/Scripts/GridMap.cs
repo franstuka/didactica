@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
@@ -24,8 +25,10 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         cellDiameter = CellRadius * 2;
         gridSizeX = Mathf.RoundToInt(WorldSize.x / cellDiameter);
         gridSizeY = Mathf.RoundToInt(WorldSize.y / cellDiameter);
-        //Debug.Log(gridSizeX);
+        //Debug.Log(gridSizeX);       
         CreateGrid();
+        clones = new GameObject[gridSizeX, gridSizeY];
+        ShowNumbers();
     }
     #endregion
 
@@ -51,15 +54,27 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private int gridSizeX;
     private int gridSizeY;
 
-    
+
+    //NUMBERS
+    [SerializeField] private GameObject numberText;
+    private CameraIsMoving cameraIsMoving;
+    GameObject[,] clones;
+
     private void Start()
     {
+        cameraIsMoving = GetComponent<CameraIsMoving>();
         UpdateEnemyPositions();
+        ChangeTextRotation();
+        
     }
 
     private void Update()
     {
         UpdateEnemyPositions();
+        if (cameraIsMoving.isMoving)
+        {
+            ChangeTextRotation();
+        }
     }
 
     private void CreateGrid()
@@ -93,13 +108,30 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         }
     }
 
+    private void ShowNumbers()
+    {
+        numberText.transform.localScale = new Vector3(1 / WorldSize.x, 1 / WorldSize.y, 1);
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                GameObject clone = Instantiate(numberText);
+                clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
+                
+                TextMeshPro textMesh = clone.GetComponent<TextMeshPro>();
+                textMesh.text = "" + grid[x, y].Cost;
+                clones[x, y] = clone;
+            }
+        }
+    }
+
     private void UpdateEnemyPositions()
     {
         RaycastHit[] enemies = Physics.BoxCastAll(transform.position, Vector3.one * Mathf.Max(WorldSize.x, WorldSize.y), Vector3.one, 
             Quaternion.identity, Mathf.Max(WorldSize.x, WorldSize.y) * 2, enemyMask, QueryTriggerInteraction.Ignore);
         CleanNonStaticElementsOnGrid();
         Vector2Int pos;
-        for (int i = 0; i<enemies.Length; i++)
+        for (int i = 0; i< enemies.Length; i++)
         {
             pos = CellCordFromWorldPoint(enemies[i].collider.gameObject.transform.position);
             if(grid[pos.x, pos.y].CellType == CellTypes.emphy)
@@ -108,6 +140,18 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
                 temporalGridObjects.Add(new Vector2Int(pos.x, pos.y));
             }   
         }
+    }
+
+    private void ChangeTextRotation()
+    {       
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {                
+                clones[x,y].transform.rotation = Camera.main.transform.rotation;
+            }
+        }        
+
     }
 
     private void CleanNonStaticElementsOnGrid()
