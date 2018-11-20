@@ -6,6 +6,7 @@ public class OnSceneEnter : MonoBehaviour {
 
     public Image BlackImage;
     public float FadeTime;
+    public bool ActivateFade = true;
     private bool isFading = true;
     private float alpha = 1;
     private float alphaSpeed;
@@ -13,15 +14,11 @@ public class OnSceneEnter : MonoBehaviour {
     // Update is called once per frame
     void Start ()
     {
-        alphaSpeed = 1 / FadeTime;
-        StartFade();
-
-    }
-
-
-    public void StartFade()
-    {
-        StartCoroutine(Fade());
+        if(ActivateFade)
+        {
+            alphaSpeed = 1 / FadeTime;
+            StartCoroutine(Fade());
+        }
     }
 
     IEnumerator Fade()
@@ -43,6 +40,6 @@ public class OnSceneEnter : MonoBehaviour {
         } 
         alpha = 1;
         isFading = true;
+        Destroy(gameObject);
     }
-
 }

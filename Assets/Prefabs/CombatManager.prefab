@@ -19,9 +19,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4028166630180520}
-  - component: {fileID: 114996682177963394}
-  - component: {fileID: 114103858678211860}
-  - component: {fileID: 114904588887692050}
   - component: {fileID: 114520676935375982}
   m_Layer: 0
   m_Name: CombatManager
@@ -37,24 +34,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888166403449538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.836375, y: 4.0797567, z: 5.8663497}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114103858678211860
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888166403449538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d44e32eecd1f39448e172f1245c9abc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterList: []
 --- !u!114 &114520676935375982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,29 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a303d023c297145a0cc36fc963bd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114904588887692050
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888166403449538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9526b67fbeec24ab62ab29b0004c41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114996682177963394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888166403449538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0478dbbfd41cc704098abde01d86f420, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: []
-  cardList: []
-  cardOperationList: []
-  text: {fileID: 0}
+  positionToSpawnEnemy: {fileID: 0}
+  sumProbability: 0
+  substractionProbability: 0
+  multiplyProbability: 0
+  divideProbability: 0
+  monsterMovementsOnDefeat: 0
+  maxOperations: 0
