@@ -826,22 +826,22 @@ Prefab:
     - target: {fileID: 114497011666848930, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114497011666848930, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
@@ -851,12 +851,12 @@ Prefab:
     - target: {fileID: 114341940780937678, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114341940780937678, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224580010285393280, guid: e88005341eb8d1d4e851dab1e0e142b5,
         type: 2}
@@ -909,6 +909,42 @@ Prefab:
     - target: {fileID: 1351089725251688, guid: e88005341eb8d1d4e851dab1e0e142b5, type: 2}
       propertyPath: m_Name
       value: FirstMoveText
+      objectReference: {fileID: 0}
+    - target: {fileID: 114584841582069570, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a7a4b413a36bdc34c9efa370a7395beb,
+        type: 3}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_textAlignment
+      value: 514
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024517756537096, guid: e88005341eb8d1d4e851dab1e0e142b5,
+        type: 2}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e88005341eb8d1d4e851dab1e0e142b5, type: 2}
@@ -1242,6 +1278,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1460672786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1974550242212384, guid: e88005341eb8d1d4e851dab1e0e142b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 958608234}
+--- !u!114 &1460672788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460672786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb297b612057b9243ba08e5187e07f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1514441908
 Prefab:
   m_ObjectHideFlags: 0
