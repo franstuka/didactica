@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SaveDataManager : MonoBehaviour {
 
     //player stats to save
@@ -19,6 +20,11 @@ public class SaveDataManager : MonoBehaviour {
     //public List<Vector3> enemyTargetMovement; //maybe not necesary
     public List<GameObject> staticItemsInScene; //like chest etc
     public int sceneLevel; //just for error control
+    //data saved for combat
+    public bool randomCombat;
+    public string enemyName; //both needed for search the name in the enemy list and spawn the enemy using his prefab
+    public int enemyLevel;
+    public Vector3 enemyInCombatPosition;
 
     private void Awake()
     {
@@ -157,6 +163,29 @@ public class SaveDataManager : MonoBehaviour {
         }
         else
             Debug.LogError("Something is going grong on load level");
+    }
+
+    public void SaveEnemyData(bool randomCombat)
+    {
+        this.randomCombat = randomCombat;
+    }
+
+    public void SaveEnemyData(bool randomCombat ,string name, int level, Vector3 enemyInCombatPosition)
+    {
+        this.randomCombat = randomCombat;
+        enemyName = name;
+        enemyLevel = level;
+        this.enemyInCombatPosition = enemyInCombatPosition;
+    }
+
+    public object[] LoadEnemyData() //dim 3
+    {
+        return new object[] { randomCombat, enemyName, enemyLevel }; 
+    }
+
+    public void ClearEnemyData() //with this is enought for ignore the data stored and use a random enemy and other effects
+    {
+        randomCombat = true;
     }
 
     public void SaveOnPersistent()

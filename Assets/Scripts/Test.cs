@@ -26,5 +26,10 @@ public class Test : MonoBehaviour {
         {
             GameManager.instance.ChangeScene("SampleScene");
         }
+
+        if (Input.GetKeyDown("3"))
+        {
+            Debug.Log(GameManager.instance.GetMonsterOnCombat()[0] + " " + GameManager.instance.GetMonsterOnCombat()[1] +" " + GameManager.instance.GetMonsterOnCombat()[2]);
+        }
     }
 }

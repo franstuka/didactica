@@ -5,12 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyCombat : CombatStats {
 
-    public enum EnemyState { PATROL,HOLD,COMBAT, RETURNING_TO_POSITION };
+    public enum EnemyState { PATROL,HOLD,COMBAT, RETURNING_TO_POSITION,IDLE };
     
     //[SerializeField] protected NavMeshAgent nav;
     [SerializeField] protected Navegation nav;
     [SerializeField] protected bool staticEnemy;
-    [SerializeField] private float offsetDistance = 0.15f;
     //card probabilities
     [SerializeField] private float sumProbability;
     [SerializeField] private float substractionProbability;
@@ -18,6 +17,7 @@ public class EnemyCombat : CombatStats {
     [SerializeField] private float divideProbability;
     [SerializeField] private int numSteepsWinOnDefeat = 10;
     [SerializeField] private int monsterLevel = 1;
+    [SerializeField] private int numOfOperations = 2;
     //Enemy Behaviours
     public EnemyState activeState;
     private Hold hold;
@@ -84,13 +84,17 @@ public class EnemyCombat : CombatStats {
     {
         switch (activeState)
         {
+            case EnemyState.IDLE:
+                {
+                    break;
+                }
             case EnemyState.COMBAT:
                 {
                     break;
                 }
             case EnemyState.PATROL:
                 {
-                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    if(nav.GetStopped())
                     {
                         target = patrol.GetNewWaipoint(target);
                         nav.SetDestination(target);
@@ -107,7 +111,7 @@ public class EnemyCombat : CombatStats {
                 }
             case EnemyState.RETURNING_TO_POSITION:
                 {
-                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    if (nav.GetStopped())
                     {
                         if (FaceAndCheckObjective(hold.DirectionToFace(), 2f))
                         {
@@ -127,15 +131,50 @@ public class EnemyCombat : CombatStats {
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if( other.gameObject.tag == "Player")
+        {
+            if (!GameManager.instance.GetOnCombat()) //Enter in combat
+            {
+                GameManager.instance.OnCombatEnter(gameObject.name,monsterLevel,transform.position);
+            }
+        }
+    }
+
     private void UpdateAnimator()
     {
 
     }
 
+    public int GetEnemyLevel()
+    {
+        return monsterLevel;
+    }
+
+    public float[] GetEnemyProbabilities() //first sum, substract, multiply, divide
+    {
+        return new float[] { sumProbability,substractionProbability,multiplyProbability, divideProbability};
+    }
+    
+    public int GetEnemyMovementsOnDefeat()
+    {
+        return numSteepsWinOnDefeat;
+    }
+
+    public int GetMaxOperations()
+    {
+        return numOfOperations;
+    }
+
     IEnumerator WaitEndFrameToStartIA()
     {
         yield return new WaitForEndOfFrame();
-        if (!staticEnemy)
+        if(GameManager.instance.GetOnCombat())
+        {
+            activeState = EnemyState.COMBAT;
+        }
+        else if (!staticEnemy)
         {
             activeState = EnemyState.PATROL;
             if (target == new Vector3(float.MaxValue, float.MaxValue, float.MaxValue))
