@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 114412165084453908}
   - component: {fileID: 114038030718915570}
   m_Layer: 12
-  m_Name: EnemyTest
+  m_Name: EnemyTest lv 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   multiplyProbability: 0
   divideProbability: 0
   numSteepsWinOnDefeat: 10
-  monsterLevel: 1
+  monsterLevel: 2
   numOfOperations: 2
   activeState: 0
 --- !u!114 &114412165084453908

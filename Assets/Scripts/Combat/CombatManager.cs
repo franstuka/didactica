@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour {
     
-
     private List<Card> cardListCombat;
 
     private float monsterLife;

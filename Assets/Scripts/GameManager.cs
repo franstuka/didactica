@@ -40,18 +40,24 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    [SerializeField] List<Item> initialItems = new List<Item>();
-    [SerializeField] private PauseMenuScript menu;
-
-    private const int startPlayerHp = 5;
-
     public int actualLevel;
     public bool onCombat;
     public bool levelWasStarted;
 
+    [SerializeField] private PauseMenuScript menu;
+    [SerializeField] List<Item> initialItems = new List<Item>();
+    [SerializeField] private List<GameObject> enemyPrefabsList = new List<GameObject>();
+
+    private Dictionary<int, Dictionary<int, GameObject>> enemyDictionaryByLevel = new Dictionary<int, Dictionary<int, GameObject>>();
+    private const int startPlayerHp = 5;
+
+    //enemyPrefabList save all the enemies as start-up info and enemyDictioraryByLevel organice that information as a dictionary ordenated by enemy level,
+    //then, the enemyPrefabsList is voided for not store useless data in memory.  
+
     private void Start()
     {
         InicialiceFirstLevelPlayerData(1);
+        SaveEnemiesInDictionary();
     }
 
     public void EndLevelLost()
@@ -63,6 +69,8 @@ public class GameManager : MonoBehaviour {
     {
         menu.win.StartFade();
     }
+
+    #region scene and savedata Management
 
     public void OnOpenGame()
     {
@@ -141,6 +149,8 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(LoadPlayerDataOnScene());
     }
 
+    #endregion
+
     public void InicialiceFirstLevelPlayerData(int level)
     {
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
@@ -217,6 +227,36 @@ public class GameManager : MonoBehaviour {
     public void SetLevelWasStarted(bool value)
     {
         levelWasStarted = value;
+    }
+    
+    public Dictionary<int,GameObject> GetMonsterLevelList(int level)
+    {
+        if(enemyDictionaryByLevel[level].Count == 0)
+        {
+            Debug.LogError("There isn't enemies on this dictionary level (" + level + ")");
+        }
+
+        return enemyDictionaryByLevel[level];
+    }
+
+    private void SaveEnemiesInDictionary()
+    {
+        int enemyLevel;
+        for (int i = 0; i < enemyPrefabsList.Count; i++)
+        {
+            enemyLevel = enemyPrefabsList[i].GetComponent<EnemyCombat>().GetEnemyLevel();
+            
+            if(enemyDictionaryByLevel.ContainsKey(enemyLevel))
+            {
+                enemyDictionaryByLevel[enemyLevel].Add(enemyDictionaryByLevel[enemyLevel].Count, enemyPrefabsList[i]);
+            }
+            else
+            {
+                enemyDictionaryByLevel[enemyLevel] = new Dictionary<int, GameObject>(); //need to define the dictionary entry
+                enemyDictionaryByLevel[enemyLevel].Add(enemyDictionaryByLevel[enemyLevel].Count, enemyPrefabsList[i]);
+            }
+        }
+        enemyPrefabsList.Clear();
     }
 
     IEnumerator LoadPlayerDataOnScene() //this is used on change scene next fixed update, when escena has been changed

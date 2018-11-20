@@ -80,6 +80,10 @@ MonoBehaviour:
   enemiesPosition: []
   staticItemsInScene: []
   sceneLevel: 0
+  randomCombat: 0
+  enemyName: 
+  enemyLevel: 0
+  enemyInCombatPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114406679300994094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,13 +106,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0dcb25a504b2e40af946d38046a6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualLevel: 0
+  onCombat: 0
+  levelWasStarted: 0
+  menu: {fileID: 0}
   initialItems:
   - {fileID: 11400000, guid: c7dd018ed6fc6e3419254d67110cadff, type: 2}
   - {fileID: 11400000, guid: c30f7133d9bb8594091355d48fd949f6, type: 2}
   - {fileID: 11400000, guid: 54c78bfde53f9614eadff51c40c63f9a, type: 2}
   - {fileID: 11400000, guid: 7e41e745182885a40ad29362b2b88314, type: 2}
   - {fileID: 11400000, guid: 764c9398ee161c64dac7bec383b99271, type: 2}
-  menu: {fileID: 0}
-  actualLevel: 0
-  onCombat: 0
-  levelWasStarted: 0
+  enemyPrefabsList:
+  - {fileID: 1878013719786584, guid: 9e73d2ce724c40f45925ec9d8b17c31d, type: 2}
+  - {fileID: 1878013719786584, guid: eed35ec21e3b23745bd988381acc3029, type: 2}
+  - {fileID: 1878013719786584, guid: 9e73d2ce724c40f45925ec9d8b17c31d, type: 2}

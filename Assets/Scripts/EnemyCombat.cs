@@ -10,7 +10,6 @@ public class EnemyCombat : CombatStats {
     //[SerializeField] protected NavMeshAgent nav;
     [SerializeField] protected Navegation nav;
     [SerializeField] protected bool staticEnemy;
-    [SerializeField] private float offsetDistance = 0.15f;
     //card probabilities
     [SerializeField] private float sumProbability;
     [SerializeField] private float substractionProbability;
@@ -91,7 +90,7 @@ public class EnemyCombat : CombatStats {
                 }
             case EnemyState.PATROL:
                 {
-                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    if(nav.GetStopped())
                     {
                         target = patrol.GetNewWaipoint(target);
                         nav.SetDestination(target);
@@ -108,7 +107,7 @@ public class EnemyCombat : CombatStats {
                 }
             case EnemyState.RETURNING_TO_POSITION:
                 {
-                    if (transform.position.x <= target.x + offsetDistance && transform.position.x >= target.x - offsetDistance && transform.position.z <= target.z + offsetDistance && transform.position.z >= target.z - offsetDistance)
+                    if (nav.GetStopped())
                     {
                         if (FaceAndCheckObjective(hold.DirectionToFace(), 2f))
                         {
@@ -134,8 +133,7 @@ public class EnemyCombat : CombatStats {
         {
             if (!GameManager.instance.GetOnCombat()) //Enter in combat
             {
-
-                GameManager.instance.OnCombatEnter();
+                GameManager.instance.OnCombatEnter(gameObject.name,monsterLevel,transform.position);
             }
         }
     }
@@ -145,6 +143,10 @@ public class EnemyCombat : CombatStats {
 
     }
 
+    public int GetEnemyLevel()
+    {
+        return monsterLevel;
+    }
     
 
     IEnumerator WaitEndFrameToStartIA()

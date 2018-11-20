@@ -728,21 +728,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114348807379902372, guid: 6a4e40d2b3447324ca5c0d9afaa106ae,
-        type: 2}
-      propertyPath: movementsAvaible
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54711536992359712, guid: 6a4e40d2b3447324ca5c0d9afaa106ae,
-        type: 2}
-      propertyPath: m_AngularDrag
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 54711536992359712, guid: 6a4e40d2b3447324ca5c0d9afaa106ae,
-        type: 2}
-      propertyPath: m_Drag
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4e40d2b3447324ca5c0d9afaa106ae, type: 2}
   m_IsPrefabAsset: 0
@@ -901,7 +886,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 744911386}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 43b7efbd370bb0d48a09888f52fbdfe1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1874,7 +1859,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1821941613}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 43b7efbd370bb0d48a09888f52fbdfe1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
