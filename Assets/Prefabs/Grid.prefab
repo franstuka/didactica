@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4898317575057572}
   - component: {fileID: 114553855059909426}
-  - component: {fileID: 33737021373708154}
-  - component: {fileID: 23746036812092330}
+  - component: {fileID: 33202892952472464}
+  - component: {fileID: 23890355478487310}
+  - component: {fileID: 114224903066725090}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -54,8 +55,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887850732789988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4898317575057572}
   m_RootOrder: 0
@@ -109,7 +110,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23746036812092330
+--- !u!23 &23890355478487310
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +145,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33737021373708154
+--- !u!33 &33202892952472464
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +173,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114224903066725090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1842899529401730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d67f7735bf347b4ebdce9b370a3cc1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMoving: 0
 --- !u!114 &114553855059909426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,4 +208,3 @@ MonoBehaviour:
   WorldSize: {x: 30, y: 30}
   CellRadius: 0.25
   numberText: {fileID: 1817076794343666, guid: 0893c450d20168b49b7a4fcb4110a256, type: 2}
-  camera: {fileID: 0}

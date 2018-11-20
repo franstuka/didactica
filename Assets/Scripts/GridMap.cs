@@ -116,6 +116,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
             for (int y = 0; y < gridSizeY; y++)
             {
                 GameObject clone = Instantiate(numberText);
+                clone.transform.parent = gameObject.transform;
                 clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
                 
                 TextMeshPro textMesh = clone.GetComponent<TextMeshPro>();
