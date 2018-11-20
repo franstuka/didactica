@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114627293735736680}
   - component: {fileID: 114412165084453908}
   - component: {fileID: 114038030718915570}
+  - component: {fileID: 65675602195014974}
   m_Layer: 12
   m_Name: EnemyTest
   m_TagString: Untagged
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878013719786584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74, y: 0.828, z: 7.71}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4070487526904560}
@@ -190,6 +191,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65675602195014974
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878013719786584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114038030718915570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,15 +224,14 @@ MonoBehaviour:
   DieSound: {fileID: 0}
   nav: {fileID: 0}
   staticEnemy: 0
-  offsetDistance: 0.05
-  sumProbability: 0
-  substractionProbability: 0
-  multiplyProbability: 0
-  divideProbability: 0
+  sumProbability: 50
+  substractionProbability: 25
+  multiplyProbability: 10
+  divideProbability: 5
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
-  activeState: 0
+  activeState: 4
 --- !u!114 &114412165084453908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,9 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99732158a27cc714999934787dce9aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waipoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  waipoints: []
 --- !u!114 &114627293735736680
 MonoBehaviour:
   m_ObjectHideFlags: 1

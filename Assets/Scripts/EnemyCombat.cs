@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyCombat : CombatStats {
 
-    public enum EnemyState { PATROL,HOLD,COMBAT, RETURNING_TO_POSITION };
+    public enum EnemyState { PATROL,HOLD,COMBAT, RETURNING_TO_POSITION,IDLE };
     
     //[SerializeField] protected NavMeshAgent nav;
     [SerializeField] protected Navegation nav;
@@ -84,6 +84,10 @@ public class EnemyCombat : CombatStats {
     {
         switch (activeState)
         {
+            case EnemyState.IDLE:
+                {
+                    break;
+                }
             case EnemyState.COMBAT:
                 {
                     break;
@@ -147,7 +151,21 @@ public class EnemyCombat : CombatStats {
     {
         return monsterLevel;
     }
+
+    public float[] GetEnemyProbabilities() //first sum, substract, multiply, divide
+    {
+        return new float[] { sumProbability,substractionProbability,multiplyProbability, divideProbability};
+    }
     
+    public int GetEnemyMovementsOnDefeat()
+    {
+        return numSteepsWinOnDefeat;
+    }
+
+    public int GetMaxOperations()
+    {
+        return numOfOperations;
+    }
 
     IEnumerator WaitEndFrameToStartIA()
     {

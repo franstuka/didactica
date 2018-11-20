@@ -149,6 +149,11 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(LoadPlayerDataOnScene());
     }
 
+    public object[] GetMonsterOnCombat()
+    {
+        return saveDataManager.LoadEnemyData();
+    }
+
     #endregion
 
     public void InicialiceFirstLevelPlayerData(int level)

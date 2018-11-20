@@ -178,6 +178,11 @@ public class SaveDataManager : MonoBehaviour {
         this.enemyInCombatPosition = enemyInCombatPosition;
     }
 
+    public object[] LoadEnemyData() //dim 3
+    {
+        return new object[] { randomCombat, enemyName, enemyLevel }; 
+    }
+
     public void ClearEnemyData() //with this is enought for ignore the data stored and use a random enemy and other effects
     {
         randomCombat = true;
