@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public static int movementsAvaible = 0;
+    public int movementsAvaible = 0;
     [SerializeField] private int startingMoves = 100;
     [SerializeField] Navegation nav;
 
-    private void Awake()
+    private void Start()
     {
         movementsAvaible = startingMoves;
-    }
-
-    private void Start()
-    {        
         nav = GetComponent<Navegation>();
     }
 
