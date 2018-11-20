@@ -6,7 +6,7 @@ using TMPro;
 public class Steps : MonoBehaviour {
     private TextMeshProUGUI textMeshPro;
     private float red;
-    private float blue;
+    private float green;
     private int maxSteps;
     private float percentage;
 
@@ -14,13 +14,13 @@ public class Steps : MonoBehaviour {
 	void Start () {
         textMeshPro = GetComponent<TextMeshProUGUI>();
         red = 0;
-        blue = 255;
+        green = 255;
         maxSteps = PlayerMovement.movementsAvaible;
         percentage = 0.0f;
     }
 	
 	// Update is called once per frame
-	void Update () {       
+	void Update () {        
         if (PlayerMovement.movementsAvaible <= 0)
         {
             textMeshPro.text = "0";
@@ -32,8 +32,8 @@ public class Steps : MonoBehaviour {
             percentage = ((float)PlayerMovement.movementsAvaible / (float)maxSteps) * 100;
         }
         
-        red = (255 / 100) * (100 - percentage);
-        blue = (255 / 100) * (percentage);
-        textMeshPro.color = new Color32((byte)red, 0, (byte)blue, 255);
+        red = (255f / 100f) * (100 - percentage);
+        green = (255f / 100f) * (percentage);
+        textMeshPro.color = new Color32((byte)red, (byte)green, 0, 255);
     }
 }
