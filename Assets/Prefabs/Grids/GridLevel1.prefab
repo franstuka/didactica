@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 33202892952472464}
   - component: {fileID: 23890355478487310}
   - component: {fileID: 114224903066725090}
+  - component: {fileID: 114842353139916370}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: GridLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1842899529401730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalScale: {x: 3, y: 1, z: 0.8}
   m_Children:
   - {fileID: 4628719944792774}
   m_Father: {fileID: 0}
@@ -205,6 +206,17 @@ MonoBehaviour:
   seeEnemyPath: 0
   seeAStarChilds: 0
   enemySelected: {fileID: 0}
-  WorldSize: {x: 30, y: 30}
-  CellRadius: 0.25
+  WorldSize: {x: 30, y: 8}
+  CellRadius: 0.5
   numberText: {fileID: 1817076794343666, guid: 0893c450d20168b49b7a4fcb4110a256, type: 2}
+--- !u!114 &114842353139916370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1842899529401730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1ade67e33403448b4cc2f34dbe062e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
