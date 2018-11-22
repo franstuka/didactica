@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HUDManager : MonoBehaviour {
-
+    
     [SerializeField] private TextMeshProUGUI stepsText;
     [SerializeField] private TextMeshProUGUI HPText;
+    [SerializeField] private Button OKButton;
+    [SerializeField] private GameObject[] textsAdventureBegins;
+
+    [SerializeField] private GameObject OKButtonGameObject;
     
-    private PlayerMovement playerMovement;
+    [SerializeField] private PlayerMovement playerMovement;
 
     //Steps
     private float red;
@@ -18,16 +23,22 @@ public class HUDManager : MonoBehaviour {
     //Auxiliar variables
     private int lastMovementsAvailable;
     private int lastHP;
+
+    //Texts
+    private bool adventureHasBegun;
+    private int storyText;
     
     // Use this for initialization
     void Start()
     {        
-        playerMovement = gameObject.GetComponent<PlayerMovement>();
+        OKButton.onClick.AddListener(NextText);
         red = 0;
         green = 255;
         maxSteps = 10;        
         UpdateSteps();
         UpdateHP();
+        adventureHasBegun = true;
+        storyText = 0;
     }
 
     // Update is called once per frame
@@ -41,8 +52,14 @@ public class HUDManager : MonoBehaviour {
         if (lastHP != playerMovement.GetHP())
         {
             UpdateHP();       
-        }
+        }              
        
+
+        if (!adventureHasBegun)
+        {
+            OKButtonGameObject.SetActive(false);          
+        }
+
     }
 
     void UpdateSteps()
@@ -75,5 +92,26 @@ public class HUDManager : MonoBehaviour {
     {
         HPText.text = "" + playerMovement.GetMaxHP() + "/" + playerMovement.GetHP();
         lastHP = playerMovement.GetHP();
+    }
+
+    void NextText()
+    {        
+        if (adventureHasBegun)
+        {
+            if (!textsAdventureBegins[4].activeSelf)
+            {
+                textsAdventureBegins[storyText].SetActive(false);
+                storyText++;
+                textsAdventureBegins[storyText].SetActive(true);
+            }
+
+            else
+            {
+                textsAdventureBegins[storyText].SetActive(false);
+                OKButtonGameObject.SetActive(false);
+                adventureHasBegun = false;
+                playerMovement.SetCanMove(true);
+            }
+        }
     }
 }

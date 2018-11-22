@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
@@ -68,7 +69,10 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     int[,] cellCost;
 
     //GridShader
-    private Renderer renderer;   
+    private Renderer renderer;
+
+    //Scene
+    private Scene scene;
 
     private void Start()
     {
@@ -90,8 +94,10 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     private void AssignCosts()
     {
         gridValueMatrixes = GetComponent<GridValueMatrixes>();
-        if (name == "GridLevel1")
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
         {
+            Debug.Log("1");
             for(int x = 0; x < gridSizeX; x++)
             {
                 for(int y = 0; y < gridSizeY; y++)
@@ -135,7 +141,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void ShowNumbers()
     {
-        numberText.transform.localScale = new Vector3(1 / WorldSize.y / (4 - transform.localScale.x), 1 / WorldSize.x / (4 - transform.localScale.z), 1);        
+        numberText.transform.localScale = new Vector3(1 / WorldSize.y, 1 / WorldSize.x, 1);        
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
