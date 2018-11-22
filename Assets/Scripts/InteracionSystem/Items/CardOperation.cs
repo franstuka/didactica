@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardType { ADD, SUBSTRACT, MULTIPLY, DIVIDE }
+public enum CardType { ADD, SUBSTRACT, MULTIPLY, DIVIDE } //new operation types must modificate combatManager GetMonsterLife() 
 
 [CreateAssetMenu(fileName = "New CardOperation", menuName = "Inventory/CardOperation")]
 public class CardOperation : Item { 

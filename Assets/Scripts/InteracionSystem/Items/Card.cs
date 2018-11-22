@@ -7,13 +7,13 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Card", menuName = "Inventory/Card")]
 public class Card : Item { 
     
-    public float value;
+    public int value;
     public GameObject prefab;
 
 
     ////////////////////////////////////////////////////////////////////////////
     //Sección de prueba
-    public Card(float newValue)
+    public Card(int newValue)
     {
         value = newValue;
     }
