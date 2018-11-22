@@ -4,46 +4,36 @@ using UnityEngine;
 
 public class CombatStats : MonoBehaviour {
 
-    public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE, LIGHTVISION };
-    [SerializeField] private float MaxHp = 1;
-    [SerializeField] private float HP = 1;
-    [SerializeField] private float Damage = 0;
-    [SerializeField] private float Defense = 0;
+    public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE };
+    [SerializeField] private int MaxHp = 0;
+    [SerializeField] private int HP = 0;
+    [SerializeField] private int Damage = 0;
+    [SerializeField] private int Defense = 0;
 
     public Animator anim;
     
     [SerializeField] protected AudioSource DoDamageSound;
     [SerializeField] private AudioSource GetDamageSound;
     [SerializeField] private AudioSource DieSound;
-    [SerializeField] private bool IsAttacking;
-    [SerializeField] private bool hasAttackedSomeone;
-    [SerializeField] private int attackID;
-    [SerializeField] private int enemyLastAttackID;
-
 
     private void OnEnable()
     {
         HP = MaxHp;
     }
 
-
-
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
-    // Use this for initialization
-    void Start () {
-        IsAttacking = false;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
-    public float GetHP()
+    public int GetHP()
     {
         return HP;
+    }
+
+    public int GetMaxHP()
+    {
+        return MaxHp;
     }
 
     public virtual float GetDamage()
@@ -56,7 +46,7 @@ public class CombatStats : MonoBehaviour {
         return Defense;
     }
 
-    public virtual void ChangeStats(CombatStatsType state , float valor)
+    public virtual void ChangeStats(CombatStatsType state , int valor)
     {
         switch((int)state)
         {
@@ -102,41 +92,32 @@ public class CombatStats : MonoBehaviour {
                 break;
         }
     }
-
-    public bool GetIsAttacking()
+    public virtual void SetStats(CombatStatsType state, int valor)
     {
-        return IsAttacking;
-    }
-    public void SetIsAttacking(bool IsAttacking)
-    {
-        this.IsAttacking = IsAttacking;
-    }
-
-    public bool GetHasAttackedSomeone()
-    {
-        return hasAttackedSomeone;
-    }
-    public void SetHasAttackedSomeone(bool hasAttackedSomeone)
-    {
-        this.hasAttackedSomeone = hasAttackedSomeone;
-    }
-
-    public int GetAttackID()
-    {
-        return attackID;
-    }
-    public void SetAttackID(int attackID)
-    {
-        this.attackID = attackID;
-    }
-
-    public int GetEnemyLastAttackID()
-    {
-        return enemyLastAttackID;
-    }
-    public void SetEnemyLastAttackID(int enemyLastAttackID)
-    {
-        this.enemyLastAttackID = enemyLastAttackID;
+        switch ((int)state)
+        {
+            case 0:
+                MaxHp = valor;
+                break;
+            case 1:
+                if(valor <= MaxHp)
+                    HP = valor;
+                else
+                {
+                    HP = MaxHp;
+                }
+                break;
+            case 2:
+                Damage = valor;
+                if (Damage < 0)
+                    Damage = 0;
+                break;
+            case 3:
+                Defense = valor;
+                if (Defense < 0)
+                    Defense = 0;
+                break;
+        }
     }
 
     public virtual void Die()

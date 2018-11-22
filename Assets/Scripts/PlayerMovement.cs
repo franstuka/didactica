@@ -2,36 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : CombatStats
+{
 
-    public int movementsAvaible = 0;
-    [SerializeField] private int startingMoves = 100;
+    public int movementsAvaible = 1;
     [SerializeField] Navegation nav;
-    
+    private bool canMove;
 
     private void Start()
     {
-        movementsAvaible = startingMoves;
         nav = GetComponent<Navegation>();
+        canMove = false;
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (movementsAvaible <= 0 && nav.GetStopped())
-        {
-            //enter combat
-        }
-        else if(Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 13)) //layer 13 click detection
+        if (canMove) {
+            if (movementsAvaible <= 0 && nav.GetStopped())
             {
-                movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move
+                if (!GameManager.instance.GetOnCombat()) //Enter in combat
+                {
+                    GameManager.instance.OnCombatEnter();
+                }
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit hit;
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~13)) //layer 13 click detection
+                {
+                    movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move
+                }
             }
         }
         
+        
 	}
+
+    public void SetCanMove(bool state)
+    {
+        canMove = state;
+    }
+
+  
 }
