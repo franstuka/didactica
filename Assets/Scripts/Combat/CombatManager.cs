@@ -16,6 +16,7 @@ public class CombatManager : MonoBehaviour {
     private int monsterLife;
     public int monsterMovementsOnDefeat;
     public int maxOperations;
+    public int maxCardsInHand = 6;
 
     private void Awake()
     {
@@ -107,21 +108,72 @@ public class CombatManager : MonoBehaviour {
 
     private void GetCombatCardList() //pueden ser repetidas
     {
-        for (int i = 0; i < 6; i++) 
+        if(maxCardsInHand < maxOperations + 1)
         {
-            int randomCard = Random.Range(0, InventarySystem.instance.GetCardList().Count);
-            cardListCombat.Add(InventarySystem.instance.GetCardList()[randomCard]);
+            Debug.LogError("There is more operations than cards in the hand");
         }
+        else
+        {
+            for (int i = 0; i < maxCardsInHand; i++)
+            {
+                int randomCard = Random.Range(0, InventarySystem.instance.GetCardList().Count);
+                cardListCombat.Add(InventarySystem.instance.GetCardList()[randomCard]);
+            }
+        } 
     }
 
-    public void CreateMonsterValue()
+    private void CreateMonsterValue()
     {
         DeterminateMonsterToSpawn();
         GetCombatCardList();
+        GetMonsterLife();
 
         //Elección de monstruo y vida
     }
     
+    private void GetMonsterLife()
+    {
+        bool prioritizeDivision = false;
+        int operationsRealizated = 0;
+        int searchedElement;
+        int result = 0;
+        LinkedList<int> cardValues = new LinkedList<int>();
+        //add values to list
+        for (int i = 0; i < cardListCombat.Count; i++)
+        {
+            cardValues.AddFirst(cardListCombat[i].value);
+        }
+        //select first element
+        searchedElement = Random.Range(0, cardValues.Count);
+        GetCardListValue(searchedElement, ref cardValues);
+        while (operationsRealizated <= maxOperations)
+        {
+
+        }
+    }
+
+    private int GetCardListValue(int searched, ref LinkedList<int> cardValues)
+    {
+        LinkedListNode<int> node = cardValues.First;
+        int value = 0;
+        for (int i = 0; node != null; i++)
+        {
+            if(i != searched)
+            {
+                node = node.Next;
+                continue;
+            }
+            else
+            {
+                value = node.Value;
+                cardValues.Remove(node);
+                return value;
+            }
+        }
+        Debug.LogError("Position don't found on cardList");
+        return value;
+    }
+
     public void ResolveCombat(int value)
     {
 

@@ -11,6 +11,7 @@ public class EnemyCombat : CombatStats {
     [SerializeField] protected Navegation nav;
     [SerializeField] protected bool staticEnemy;
     //card probabilities
+    //The probabilie don't need to sum exactly 100%, the combat manager will set-up there to 100%
     [SerializeField] private float sumProbability;
     [SerializeField] private float substractionProbability;
     [SerializeField] private float multiplyProbability;
