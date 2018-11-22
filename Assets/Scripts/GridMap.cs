@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
@@ -25,7 +26,11 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         cellDiameter = CellRadius * 2;
         gridSizeX = Mathf.RoundToInt(WorldSize.x / cellDiameter);
         gridSizeY = Mathf.RoundToInt(WorldSize.y / cellDiameter);
-        //Debug.Log(gridSizeX);       
+        renderer = GetComponent<Renderer>();        
+        renderer.material.SetFloat("_GridXSize", WorldSize.x);
+        renderer.material.SetFloat("_GridYSize", WorldSize.y);
+        cellCost = new int[gridSizeX, gridSizeY];
+        AssignCosts();
         CreateGrid();
         clones = new GameObject[gridSizeX, gridSizeY];
         ShowNumbers();
@@ -45,6 +50,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     [SerializeField] private Vector2 WorldSize;
     [SerializeField] private float CellRadius;
+
     private List<Vector2Int> temporalGridObjects;
     private LayerMask bloquedMask;
     private LayerMask chestMask;
@@ -58,7 +64,15 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     //NUMBERS
     [SerializeField] private GameObject numberText;
     private CameraIsMoving cameraIsMoving;
+    private GridValueMatrixes gridValueMatrixes;
     GameObject[,] clones;
+    int[,] cellCost;
+
+    //GridShader
+    private Renderer renderer;
+
+    //Scene
+    private Scene scene;
 
     private void Start()
     {
@@ -77,6 +91,23 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         }
     }
 
+    private void AssignCosts()
+    {
+        gridValueMatrixes = GetComponent<GridValueMatrixes>();
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
+        {
+            Debug.Log("1");
+            for(int x = 0; x < gridSizeX; x++)
+            {
+                for(int y = 0; y < gridSizeY; y++)
+                {
+                    cellCost[x, y] = gridValueMatrixes.Level1Matrix[x, gridSizeY - 1 - y];
+                }
+            }
+        }
+    }
+
     private void CreateGrid()
     {
         grid = new Cell[gridSizeX, gridSizeY];
@@ -90,19 +121,19 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
                 if(Physics.CheckBox(worldPoint,Vector3.one * CellRadius,Quaternion.identity,bloquedMask)) //celltypes
                 {
-                    grid[x, y] = new Cell(CellTypes.blocked, worldPoint, 0);
+                    grid[x, y] = new Cell(CellTypes.blocked, worldPoint, cellCost[x,y]);
                 }
                 else if (Physics.CheckBox(worldPoint, Vector3.one * CellRadius, Quaternion.identity, chestMask)) 
                 {
-                    grid[x, y] = new Cell(CellTypes.chest, worldPoint, 0);
+                    grid[x, y] = new Cell(CellTypes.chest, worldPoint, cellCost[x,y]);
                 }
                 else if (Physics.CheckBox(worldPoint, Vector3.one * CellRadius, Quaternion.identity, exitMask)) 
                 {
-                    grid[x, y] = new Cell(CellTypes.exit, worldPoint, 0);
+                    grid[x, y] = new Cell(CellTypes.exit, worldPoint, cellCost[x,y]);
                 }
                 else//last else
                 {
-                    grid[x, y] = new Cell(CellTypes.emphy, worldPoint, 1);
+                    grid[x, y] = new Cell(CellTypes.emphy, worldPoint, cellCost[x,y]);
                 }
             }
         }
@@ -110,7 +141,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void ShowNumbers()
     {
-        numberText.transform.localScale = new Vector3(1 / WorldSize.x, 1 / WorldSize.y, 1);
+        numberText.transform.localScale = new Vector3(1 / WorldSize.y, 1 / WorldSize.x, 1);        
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
@@ -118,9 +149,11 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
                 GameObject clone = Instantiate(numberText);
                 clone.transform.parent = gameObject.transform;
                 clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
-                
-                TextMeshPro textMesh = clone.GetComponent<TextMeshPro>();
+
+                TextMeshPro textMesh = clone.GetComponent<TextMeshPro>();             
                 textMesh.text = "" + grid[x, y].Cost;
+                textMesh.alignment = TextAlignmentOptions.Midline;
+
                 clones[x, y] = clone;
             }
         }
