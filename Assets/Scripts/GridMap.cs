@@ -12,6 +12,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void Awake()
     {
+        scene = SceneManager.GetActiveScene();
         if (instance != null)
         {
             Debug.LogError("More than one instance of grid is trying to active");
@@ -30,6 +31,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         renderer.material.SetFloat("_GridXSize", WorldSize.x);
         renderer.material.SetFloat("_GridYSize", WorldSize.y);
         cellCost = new int[gridSizeX, gridSizeY];
+        CreateMatrix();
         AssignCosts();
         CreateGrid();
         clones = new GameObject[gridSizeX, gridSizeY];
@@ -64,7 +66,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
     //NUMBERS
     [SerializeField] private GameObject numberText;
     private CameraIsMoving cameraIsMoving;
-    private GridValueMatrixes gridValueMatrixes;
+    private int[,] Level1Matrix;
     GameObject[,] clones;
     int[,] cellCost;
 
@@ -91,18 +93,53 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
         }
     }
 
-    private void AssignCosts()
+    private void CreateMatrix()
     {
-        gridValueMatrixes = GetComponent<GridValueMatrixes>();
-        scene = SceneManager.GetActiveScene();
         if (scene.name == "Level 1")
         {
-            Debug.Log("1");
+            Level1Matrix = new int[,] { {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,8,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,9,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,1,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,3,0,3,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,3,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,4,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,3,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,9,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,9,0,4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,3,0,5,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,1,0,2,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,1,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,1,0,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+            };
+        }
+    }
+
+    private void AssignCosts()
+    {
+        if (scene.name == "Level 1")
+        {            
             for(int x = 0; x < gridSizeX; x++)
             {
                 for(int y = 0; y < gridSizeY; y++)
-                {
-                    cellCost[x, y] = gridValueMatrixes.Level1Matrix[x, gridSizeY - 1 - y];
+                {                    
+                    cellCost[x, y] = Level1Matrix[x, gridSizeY - 1 - y];    
                 }
             }
         }
@@ -147,7 +184,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
             for (int y = 0; y < gridSizeY; y++)
             {
                 GameObject clone = Instantiate(numberText);
-                clone.transform.parent = gameObject.transform;
+                clone.transform.SetParent(gameObject.transform);
                 clone.transform.position = new Vector3(-WorldSize.x / 2 + x * cellDiameter + CellRadius, 0.01f, -WorldSize.y / 2 + y * cellDiameter + CellRadius);
 
                 TextMeshPro textMesh = clone.GetComponent<TextMeshPro>();             

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class HUDManager : MonoBehaviour {
@@ -14,6 +15,7 @@ public class HUDManager : MonoBehaviour {
     [SerializeField] private GameObject OKButtonGameObject;
     
     [SerializeField] private PlayerMovement playerMovement;
+    private Scene scene;
 
     //Steps
     private float red;
@@ -27,17 +29,27 @@ public class HUDManager : MonoBehaviour {
     //Texts
     private bool adventureHasBegun;
     private int storyText;
-    
+
     // Use this for initialization
     void Start()
-    {        
+    {
         OKButton.onClick.AddListener(NextText);
         red = 0;
         green = 255;
-        maxSteps = 10;        
+        maxSteps = 10;
         UpdateSteps();
         UpdateHP();
-        adventureHasBegun = true;
+        scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "Level 1") { 
+            adventureHasBegun = true;
+            textsAdventureBegins[0].SetActive(true);
+            OKButtonGameObject.SetActive(true);
+        }
+        else
+        {
+            adventureHasBegun = false;
+        }
         storyText = 0;
     }
 

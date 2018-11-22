@@ -194,7 +194,7 @@ MonoBehaviour:
   seeAStarChilds: 0
   enemySelected: {fileID: 0}
   WorldSize: {x: 30, y: 30}
-  CellRadius: 0.25
+  CellRadius: 0.5
   numberText: {fileID: 1817076794343666, guid: 0893c450d20168b49b7a4fcb4110a256, type: 2}
 --- !u!114 &114899480346578200
 MonoBehaviour:
