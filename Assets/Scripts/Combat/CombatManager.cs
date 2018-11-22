@@ -8,15 +8,15 @@ public class CombatManager : MonoBehaviour {
 
     private List<Card> cardListCombat;
 
-    public float sumProbability;
-    public float substractionProbability;
-    public float multiplyProbability;
-    public float divideProbability;
+    private float sumProbability;
+    private float substractionProbability;
+    private float multiplyProbability;
+    private float divideProbability;
 
     private int monsterLife;
-    public int monsterMovementsOnDefeat;
-    public int maxOperations;
-    public int maxCardsInHand = 6;
+    private int monsterMovementsOnDefeat;
+    private int maxOperations;
+    private int maxCardsInHand = 6;
 
     private void Awake()
     {
@@ -29,7 +29,6 @@ public class CombatManager : MonoBehaviour {
         DeterminateMonsterToSpawn();
         GetCombatCardList();
         GetMonsterLife();
-        Debug.Log("Monster life " + monsterLife);
         //Elección de monstruo y vida
     }
 
@@ -126,10 +125,8 @@ public class CombatManager : MonoBehaviour {
             for (int i = 0; i < maxCardsInHand; i++)
             {
                 int randomCard = Random.Range(0, InventarySystem.instance.GetCardList().Count);
-                Debug.Log(InventarySystem.instance.GetCardList()[randomCard].value);
                 cardListCombat.Add(InventarySystem.instance.GetCardList()[randomCard]);
             }
-            Debug.Log("...");
         } 
     }
 
@@ -196,7 +193,6 @@ public class CombatManager : MonoBehaviour {
             {
                 case 0:
                     {
-                        Debug.Log("+");
                         searchedNum = Random.Range(0, cardValues.Count); //select value
                         result = result + GetCardListValue(searchedNum, ref cardValues, true);
                         DeleteOperationFromList(ref cardOperations, 0);
@@ -205,7 +201,6 @@ public class CombatManager : MonoBehaviour {
                     }
                 case 1:
                     {
-                        Debug.Log("-");
                         searchedNum = Random.Range(0, cardValues.Count); //select value
                         result = result - GetCardListValue(searchedNum, ref cardValues, true);
                         DeleteOperationFromList(ref cardOperations, 1);
@@ -214,7 +209,6 @@ public class CombatManager : MonoBehaviour {
                     }
                 case 2:
                     {
-                        Debug.Log("*");
                         searchedNum = Random.Range(0, cardValues.Count); //select value
                         result = result * GetCardListValue(searchedNum, ref cardValues, true);
                         DeleteOperationFromList(ref cardOperations, 2);
@@ -229,7 +223,6 @@ public class CombatManager : MonoBehaviour {
                         if ((bool)posibleDivision[0])
                         {
                             //if is a valid result, the num will be removed in ResolveDivisionCase
-                            Debug.Log("/");
                             DeleteOperationFromList(ref cardOperations, 3);
                             result = (int)posibleDivision[2];
                             operationsRealizated++;
@@ -437,4 +430,9 @@ public class CombatManager : MonoBehaviour {
             Debug.LogError("Player not found on resolve combat");
         }
     } 
+
+    public List<Card> GetCombatCards()
+    {
+        return cardListCombat;
+    }
 }
