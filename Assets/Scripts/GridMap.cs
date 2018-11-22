@@ -172,7 +172,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
             {
                 grid[pos.x, pos.y].CellType = CellTypes.enemy;
                 temporalGridObjects.Add(new Vector2Int(pos.x, pos.y));
-            }   
+            }
         }
     }
 

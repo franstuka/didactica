@@ -31,5 +31,16 @@ public class Test : MonoBehaviour {
         {
             Debug.Log(GameManager.instance.GetMonsterOnCombat()[0] + " " + GameManager.instance.GetMonsterOnCombat()[1] +" " + GameManager.instance.GetMonsterOnCombat()[2]);
         }
+
+        if (Input.GetKeyDown("4"))
+        {
+            if(FindObjectOfType<CombatManager>() != null)
+                FindObjectOfType<CombatManager>().ResolveCombat(0);
+        }
+        if (Input.GetKeyDown("5"))
+        {
+            if (FindObjectOfType<CombatManager>() != null)
+                FindObjectOfType<CombatManager>().ResolveCombat(1);
+        }
     }
 }

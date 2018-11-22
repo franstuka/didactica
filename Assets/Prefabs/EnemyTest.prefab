@@ -226,8 +226,8 @@ MonoBehaviour:
   staticEnemy: 0
   sumProbability: 50
   substractionProbability: 25
-  multiplyProbability: 10
-  divideProbability: 5
+  multiplyProbability: 0
+  divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
