@@ -136,7 +136,7 @@ public class CombatManager : MonoBehaviour {
     {
         bool end = false;
         int operationsRealizated = 0;
-        int searchedNum, searchedOperation;
+        int searchedNum;
         int result = 0;
         LinkedList<int> cardValues = new LinkedList<int>();
         LinkedList<int> cardOperations = new LinkedList<int>();
@@ -187,8 +187,6 @@ public class CombatManager : MonoBehaviour {
 
         while (operationsRealizated < maxOperations && !end)
         {
-            searchedOperation = Random.Range(0, cardOperations.Count); //select operation
-
             switch(GetOperationBasedOnPercentages(ref cardOperations))
             {
                 case 0:
