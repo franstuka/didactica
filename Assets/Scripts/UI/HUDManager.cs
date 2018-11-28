@@ -41,10 +41,11 @@ public class HUDManager : MonoBehaviour {
         UpdateHP();
         scene = SceneManager.GetActiveScene();
 
-        if (scene.name == "Level 1") { 
+        if (scene.name == "Level 1") {            
             adventureHasBegun = true;
             textsAdventureBegins[0].SetActive(true);
             OKButtonGameObject.SetActive(true);
+            playerMovement.SetCanMove(false);
         }
         else
         {

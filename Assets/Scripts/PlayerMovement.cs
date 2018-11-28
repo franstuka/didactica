@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : CombatStats
 {
-
-    public int movementsAvaible = 1;
+    [SerializeField] private Animator animations;
+    public int movementsAvaible = 10;
     [SerializeField] Navegation nav;
     private bool canMove;
 
-    private void Start()
+    private void Awake()
     {
         nav = GetComponent<Navegation>();
-        canMove = false;
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update () {
-
+        if (nav.GetStopped())        
+            animations.SetBool("isWalking", false);
+        
         if (canMove) {
             if (movementsAvaible <= 0 && nav.GetStopped())
             {
@@ -33,8 +35,24 @@ public class PlayerMovement : CombatStats
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~13)) //layer 13 click detection
                 {
-                    movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move
-                }
+                    if (hit.collider.tag == "Chest") //layer 11 click detection
+                    {                        
+                        
+                        if (nav.CanOpenChest(hit.point)) {                         
+                            transform.LookAt(hit.transform.position);
+                            animations.SetBool("openingAChest", true);
+                            canMove = false;
+                            StartCoroutine(endOpeningChestAnimation());
+                        }
+                    }
+                    else
+                    {
+                        
+                        movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move 
+                        if(nav.GetIsMoving())
+                            animations.SetBool("isWalking", true);
+                    }
+                }                
             }
         }
         
@@ -46,5 +64,12 @@ public class PlayerMovement : CombatStats
         canMove = state;
     }
 
+    IEnumerator endOpeningChestAnimation()
+    {
+        yield return new WaitForSeconds(1.2f);
+        animations.SetBool("openingAChest", false);
+        canMove = true;
+    }
   
+
 }
