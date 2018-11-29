@@ -18,4 +18,13 @@ public class CardGameobject : MonoBehaviour {
 	public string valorcarta(){
 		return value;
 	}
+	public bool soyNumeroOoperacion(){
+
+		if(value == "+" || value == "-" || value == "*" ||  value == "/"  ){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
 }

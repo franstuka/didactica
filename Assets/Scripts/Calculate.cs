@@ -8,12 +8,17 @@ public class Calculate : MonoBehaviour {
 
     private void Awake()
     {
+
+        
+         
         operators.Add('*', 3);
         operators.Add('/', 3);
         operators.Add('+', 2);
         operators.Add('-', 2);
+        
+       /*
         CalculateRPN(" 5 / 10 ");
-        CalculateRPN("10 / 5 ");
+        CalculateRPN("10 + 5 ");
         CalculateRPN("10 / 10 / 5 ");
         CalculateRPN("5 / 10 / 10 ");
         CalculateRPN("10 / ( 10 + 5 ) ");
@@ -22,7 +27,7 @@ public class Calculate : MonoBehaviour {
         CalculateRPN("5 + 2 * 4 - 2 ");
         CalculateRPN("4 / 2 * 4 * 2 ");
 
-
+ */
 
 
     }
