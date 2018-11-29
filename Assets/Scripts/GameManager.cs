@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     #region Singleton
 
     public static GameManager instance;
-    private static SaveDataManager saveDataManager;
+    public static SaveDataManager saveDataManager;
 
     private void Awake()
     {
@@ -145,8 +145,7 @@ public class GameManager : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-        StartCoroutine(LoadPlayerDataOnScene());
+        StartCoroutine(ChangeToOtherScene(sceneName));
     }
 
     public object[] GetMonsterOnCombat()
@@ -279,5 +278,12 @@ public class GameManager : MonoBehaviour {
         {
             OnSceneEnter();
         }
+    }
+
+    IEnumerator ChangeToOtherScene(string sceneName)
+    {
+        yield return new WaitForEndOfFrame();
+        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadPlayerDataOnScene());
     }
 }
