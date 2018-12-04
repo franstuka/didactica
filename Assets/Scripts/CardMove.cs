@@ -7,27 +7,34 @@ using UnityEngine.UI;
 public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragHandler {
 	public GameObject Canvas;
 	public Vector3 startPos;
+
 	public float smoothTime = 0.05F;
     private Vector3 velocity = Vector3.zero;
 	private bool first = true;
-
+	public Transform originalParent;
+	private int indicieOriginal;
 	GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
 	
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (first ){
+      //  if (first ){
 			 startPos = transform.position;
 			 first = false;
-		}
-		else{
-			return;
-		}
+			originalParent = transform.parent;
+			indicieOriginal = this.transform.GetSiblingIndex();
+		//}
+		//else{
+		//	return;
+		//}
     }
 
     public void OnDrag(PointerEventData eventData)
+
     {
+		this.tag = "cartaflotante";
+		transform.SetParent(GameObject.Find("temporalParent").transform);
         transform.position = Vector3.SmoothDamp( transform.position,Input.mousePosition,ref velocity, 0.1f);
 	
     }
@@ -47,7 +54,7 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
 		foreach (RaycastResult result in results)
         {		
 			if(result.gameObject.tag == "cartaCalculo"){
-				if(this.gameObject.tag == "carta"){
+				if(this.gameObject.tag == "cartaflotante"){
 					this.tag = "cartaCalculo";
 					this.transform.SetParent(result.gameObject.transform.parent);
 					this.transform.SetSiblingIndex(result.gameObject.transform.GetSiblingIndex());
@@ -57,7 +64,7 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
 
 				if(this.gameObject.name != result.gameObject.name ){
 
-				int indicieOriginal = this.transform.GetSiblingIndex();
+				indicieOriginal = this.transform.GetSiblingIndex();
 				this.transform.SetSiblingIndex(result.gameObject.transform.GetSiblingIndex());
 				result.gameObject.transform.SetSiblingIndex(indicieOriginal);
 				return;
@@ -70,15 +77,26 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
 				  this.transform.SetParent(result.gameObject.transform);
 				  return;
 			  }
-			  
-			  
+			   if( result.gameObject.tag == "PanelCartasNumero"){
+				  this.tag = "carta";
+				  this.transform.SetParent(result.gameObject.transform);
+				  return;
+			  }
+			  if( result.gameObject.name == "PanelCartasSigno"){
+				  this.tag = "carta";
+				  this.transform.SetParent(result.gameObject.transform);
+				  return;
+			  }
+	
 			  
 		}
-		StartCoroutine("Return"); 
+		this.transform.SetParent(originalParent);
+		this.transform.SetSiblingIndex(indicieOriginal);
+//StartCoroutine("Return"); 
     }
 
 	private void Awake() {
-			
+			Canvas = GameObject.Find("CanvasCombate"); 
 	}
 
 	// Use this for initialization
@@ -86,8 +104,8 @@ public class CardMove : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
 		 m_Raycaster = Canvas.GetComponent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
         m_EventSystem = Canvas.GetComponent<EventSystem>();
+		GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 1.0f);
 	}
-	
 	// Update is called once per frame
 	void Update () {
 	
