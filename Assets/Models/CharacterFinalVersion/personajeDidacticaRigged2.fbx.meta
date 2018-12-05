@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 05854e18cc6f97f46ae4aaa34433d4cf
+guid: 94100167ba3fd624b8ed026a0cbbb4e7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -178,7 +178,7 @@ ModelImporter:
     second: {fileID: 2100000, guid: 0e4324355fb396e4c87e1568b89baa89, type: 2}
   materials:
     importMaterials: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
     materialLocation: 1
   animations:
@@ -246,8 +246,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: metarig
-    rootMotionBoneRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

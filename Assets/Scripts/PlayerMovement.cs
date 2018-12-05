@@ -17,8 +17,12 @@ public class PlayerMovement : CombatStats
 
     // Update is called once per frame
     void Update () {
-        if (nav.GetStopped())        
+        if (nav.GetStopped())
+        {
             animations.SetBool("isWalking", false);
+            if(!animations.GetBool("openingAChest"))
+                canMove = true;
+        }
         
         if (canMove) {
             if (movementsAvaible <= 0 && nav.GetStopped())
@@ -38,8 +42,9 @@ public class PlayerMovement : CombatStats
                     if (hit.collider.tag == "Chest") //layer 11 click detection
                     {                        
                         
-                        if (nav.CanOpenChest(hit.point)) {                         
-                            transform.LookAt(hit.transform.position);
+                        if (nav.CanOpenChest(hit.point)) {
+                            //transform.LookAt(hit.transform.position);
+                            //FaceObjective(hit.transform.position);
                             animations.SetBool("openingAChest", true);
                             canMove = false;
                             StartCoroutine(endOpeningChestAnimation());
@@ -49,8 +54,11 @@ public class PlayerMovement : CombatStats
                     {
                         
                         movementsAvaible += nav.SetDestinationPlayerAndCost(hit.point); //update movements and move 
-                        if(nav.GetIsMoving())
+                        if (nav.GetIsMoving())
+                        {
                             animations.SetBool("isWalking", true);
+                            canMove = false;
+                        }
                     }
                 }                
             }
