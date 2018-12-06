@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 4959981808307940}
   - component: {fileID: 95348573908977832}
   - component: {fileID: 114928121841696866}
+  - component: {fileID: 114763109871867940}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -3010,6 +3011,26 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114763109871867940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313977190718682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564989841168e3845b81ba6cdc7dc7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angularSpeed: 120
+  maxSpeed: 3.5
+  acceleration: 4
+  simpleMode: 1
+  stoppingDistanceFactor: 0.22
+  maxCorrectionAcceleration: 15
+  stopped: 1
+  stopSpin: 0
+  stopMove: 0
 --- !u!114 &114928121841696866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3038,7 +3059,7 @@ MonoBehaviour:
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
-  activeState: 0
+  activeState: 2
 --- !u!137 &137780857476984200
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

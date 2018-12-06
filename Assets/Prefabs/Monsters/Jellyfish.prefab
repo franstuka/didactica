@@ -412,13 +412,14 @@ GameObject:
   - component: {fileID: 4966105947988246}
   - component: {fileID: 95137023144163920}
   - component: {fileID: 114550339052027484}
+  - component: {fileID: 114970409277640198}
   m_Layer: 0
   m_Name: Jellyfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1323782619490268
 GameObject:
   m_ObjectHideFlags: 1
@@ -2205,7 +2206,27 @@ MonoBehaviour:
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
-  activeState: 0
+  activeState: 2
+--- !u!114 &114970409277640198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313875519761188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564989841168e3845b81ba6cdc7dc7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angularSpeed: 120
+  maxSpeed: 3.5
+  acceleration: 4
+  simpleMode: 1
+  stoppingDistanceFactor: 0.22
+  maxCorrectionAcceleration: 15
+  stopped: 1
+  stopSpin: 0
+  stopMove: 0
 --- !u!137 &137192438316730590
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
