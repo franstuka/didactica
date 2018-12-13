@@ -62,7 +62,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GridSize: 60
+    - _GridSize: 6
+    - _GridXSize: 30
+    - _GridYSize: 30
     - _LineSize: 0.1
     - _Metallic: 0
     - _Mode: 0

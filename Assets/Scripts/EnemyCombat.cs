@@ -30,6 +30,7 @@ public class EnemyCombat : CombatStats {
         hold = GetComponent<Hold>();
         patrol = GetComponent<Patrol>();
         nav = GetComponent<Navegation>();
+        anim = GetComponent<Animator>();
     }
 
     #region See to something functions

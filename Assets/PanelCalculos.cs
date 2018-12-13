@@ -9,7 +9,7 @@ public class PanelCalculos : MonoBehaviour {
 	private CardGameobject[] cartas;
 	public string stringParaCalculo;
 
-	public GameObject text;
+	public GameObject combatManager;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,26 +20,21 @@ public class PanelCalculos : MonoBehaviour {
 
 		cartas = this.GetComponentsInChildren<CardGameobject>();
 
-		 if (Input.GetKeyUp("e"))
-        {	
-			text.GetComponent<Text>().text = "";
-        
-           text.GetComponent<Text>().text = calcular();
-        }
 
 		
 		
 		
 	}
 
-	private string calcular(){
-		stringParaCalculo = "";
+	public void calcular(){
+		stringParaCalculo = " ";
 		foreach (var item in cartas)
 		{
-			stringParaCalculo += item.valorcarta();
+			stringParaCalculo += item.valorcarta() + " ";
 		}
-
-		return stringParaCalculo;
+		print(stringParaCalculo);
+		int resultado =Mathf.RoundToInt(GetComponent<Calculate>().CalculateRPN(stringParaCalculo)) ;
+		combatManager.GetComponent<CombatManager>().ResolveCombat(resultado); 
 	}
 
 

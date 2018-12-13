@@ -22,6 +22,7 @@ public class Navegation : MonoBehaviour {
     public bool stopSpin = false;
     public bool stopMove = false;
     private float setStoppedValue = 0.15f;
+    private bool isMoving = false;
     
 
     private void Awake()
@@ -73,16 +74,34 @@ public class Navegation : MonoBehaviour {
         Vector2Int thisActualSquarePosition = GridMap.instance.CellCordFromWorldPoint(transform.position);
         Vector2Int targetActualSquarePosition = GridMap.instance.CellCordFromWorldPoint(pos);
         stopped = false;
-
         if (targetActualSquarePosition != targetLastSquarePosition && Mathf.Abs(thisActualSquarePosition.x - targetActualSquarePosition.x) <= 1
             && Mathf.Abs(thisActualSquarePosition.y - targetActualSquarePosition.y) <= 1)
         {
+            isMoving = true;
             targetLastSquarePosition = targetActualSquarePosition;
             savedPath = Astar.GetPath(thisActualSquarePosition, targetActualSquarePosition);
             return -GridMap.instance.grid[targetActualSquarePosition.x, targetActualSquarePosition.y].Cost;
         }
         else
+        {
+            isMoving = false;
             return 0;
+        }
+    }
+
+    public bool CanOpenChest(Vector3 pos)
+    {
+        Vector2Int thisActualSquarePosition = GridMap.instance.CellCordFromWorldPoint(transform.position);
+        Vector2Int targetActualSquarePosition = GridMap.instance.CellCordFromWorldPoint(pos);
+        if (targetActualSquarePosition != targetLastSquarePosition && Mathf.Abs(thisActualSquarePosition.x - targetActualSquarePosition.x) <= 1
+            && Mathf.Abs(thisActualSquarePosition.y - targetActualSquarePosition.y) <= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void UpdateActualPosition()
@@ -211,6 +230,11 @@ public class Navegation : MonoBehaviour {
     public bool GetStopped()
     {
         return stopped;
+    }
+
+    public bool GetIsMoving()
+    {
+        return isMoving;
     }
 
     public LinkedList<Vector2Int> GetSavedPath()
