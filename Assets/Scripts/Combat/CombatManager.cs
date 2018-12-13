@@ -295,7 +295,6 @@ public class CombatManager : MonoBehaviour {
                 value = node.Value;
                 if(delete)
                 {
-                    Debug.Log(value);
                     cardValues.Remove(node);
                 }    
                 return value;
