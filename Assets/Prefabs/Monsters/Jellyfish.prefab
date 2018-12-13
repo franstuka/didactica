@@ -2189,8 +2189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e497ff6a09aeeff479dba01423ac6730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 5
-  HP: 5
+  MaxHp: 2
+  HP: 2
   Damage: 0
   Defense: 0
   anim: {fileID: 0}
@@ -2199,10 +2199,10 @@ MonoBehaviour:
   DieSound: {fileID: 0}
   nav: {fileID: 0}
   staticEnemy: 0
-  sumProbability: 0
-  substractionProbability: 0
-  multiplyProbability: 0
-  divideProbability: 0
+  sumProbability: 20
+  substractionProbability: 50
+  multiplyProbability: 30
+  divideProbability: 5
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2

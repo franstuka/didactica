@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour {
         {
             case 1:
             {
-                return 5;
+                return 20;
             }
             case 2:
             {

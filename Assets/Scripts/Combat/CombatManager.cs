@@ -5,7 +5,7 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour {
 
     [SerializeField] private Transform positionToSpawnEnemy;
-
+    public GameObject PanelVida;
     private List<Card> cardListCombat;
 
     private float sumProbability;
@@ -413,6 +413,8 @@ public class CombatManager : MonoBehaviour {
             else //do damage
             {
                 player.ChangeStats(CombatStats.CombatStatsType.HP, -1);
+                Transform corazon = PanelVida.transform.GetChild(0);
+                Destroy(corazon.gameObject);
                 //maybe end game
             }
         }

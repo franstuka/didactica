@@ -236,7 +236,8 @@ GameObject:
   - component: {fileID: 114253355316289820}
   - component: {fileID: 114333673958019208}
   - component: {fileID: 114213548788566688}
-  - component: {fileID: 114560913608401696}
+  - component: {fileID: 114847758785162866}
+  - component: {fileID: 65345102341133640}
   m_Layer: 0
   m_Name: MaskMonsterPatrol
   m_TagString: Untagged
@@ -616,7 +617,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512808509028604}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.49, y: 0, z: 1.38}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4494616609816318}
@@ -683,6 +684,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.076310076, y: 0.15555397, z: 0.09426383}
   m_Center: {x: -0.008321709, y: 0.10602818, z: 0.00070279243}
+--- !u!65 &65345102341133640
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1512808509028604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95572807750843240
 Animator:
   serializedVersion: 3
@@ -718,7 +731,7 @@ MonoBehaviour:
   simpleMode: 1
   stoppingDistanceFactor: 0.22
   maxCorrectionAcceleration: 15
-  stopped: 1
+  stopped: 0
   stopSpin: 0
   stopMove: 0
 --- !u!114 &114253355316289820
@@ -748,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdedPosition: {fileID: 0}
   faceToThisPosition: {fileID: 0}
---- !u!114 &114560913608401696
+--- !u!114 &114847758785162866
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -759,24 +772,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e497ff6a09aeeff479dba01423ac6730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 5
-  HP: 5
-  Damage: 0
+  MaxHp: 2
+  HP: 2
+  Damage: 1
   Defense: 0
-  anim: {fileID: 0}
+  anim: {fileID: 95572807750843240}
   DoDamageSound: {fileID: 0}
   GetDamageSound: {fileID: 0}
   DieSound: {fileID: 0}
   nav: {fileID: 0}
   staticEnemy: 0
-  sumProbability: 0
-  substractionProbability: 0
-  multiplyProbability: 0
-  divideProbability: 0
+  sumProbability: 40
+  substractionProbability: 30
+  multiplyProbability: 20
+  divideProbability: 5
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
-  activeState: 4
+  activeState: 0
 --- !u!137 &137771383415052696
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
