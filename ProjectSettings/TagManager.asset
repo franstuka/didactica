@@ -8,6 +8,11 @@ TagManager:
   - cartaCalculo
   - carta
   - Chest
+  - canvas
+  - PanelCartasNumero
+  - PanelCartasSigno
+  - cartaSigno
+  - cartaflotante
   layers:
   - Default
   - TransparentFX

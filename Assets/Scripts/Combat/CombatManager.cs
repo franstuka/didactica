@@ -402,12 +402,6 @@ public class CombatManager : MonoBehaviour {
 
     public void ResolveCombat(int value)
     {
-        //test
-        if (value == 0)
-            value = monsterLife;
-        else
-            value = 100;
-
 
         PlayerMovement player = FindObjectOfType<PlayerMovement>();
         if (player != null)
@@ -432,5 +426,11 @@ public class CombatManager : MonoBehaviour {
     public List<Card> GetCombatCards()
     {
         return cardListCombat;
+    }
+
+    public int getMonsterLife(){
+
+        return monsterLife;
+
     }
 }

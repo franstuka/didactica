@@ -12,15 +12,15 @@ public class Calculate : MonoBehaviour {
         operators.Add('/', 3);
         operators.Add('+', 2);
         operators.Add('-', 2);
-        CalculateRPN(" 5 / 10 ");
-        CalculateRPN("10 / 5 ");
-        CalculateRPN("10 / 10 / 5 ");
-        CalculateRPN("5 / 10 / 10 ");
-        CalculateRPN("10 / ( 10 + 5 ) ");
-        CalculateRPN("10 /  10 + 5  ");
-        CalculateRPN("( 45 - 4 ) * ( 3 + 3 ) ");
-        CalculateRPN("5 + 2 * 4 - 2 ");
-        CalculateRPN("4 / 2 * 4 * 2 ");
+     //   CalculateRPN(" 5 / 10 ");
+       // CalculateRPN("10 / 5 ");
+        //CalculateRPN("10 / 10 / 5 ");
+        //CalculateRPN("5 / 10 / 10 ");
+        //CalculateRPN("10 / ( 10 + 5 ) ");
+        //CalculateRPN("10 /  10 + 5  ");
+        //CalculateRPN("( 45 - 4 ) * ( 3 + 3 ) ");
+        //CalculateRPN("5 + 2 * 4 - 2 ");
+        //CalculateRPN("4 / 2 * 4 * 2 ");
 
 
 
