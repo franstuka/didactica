@@ -5,8 +5,8 @@ using UnityEngine;
 public class CombatStats : MonoBehaviour {
 
     public enum CombatStatsType{ MAXHP , HP , DAMAGE , DEFENSE };
-    [SerializeField] private int MaxHp = 0;
-    [SerializeField] private int HP = 0;
+    [SerializeField] private int MaxHp = 5;
+    [SerializeField] private int HP = 5;
     [SerializeField] private int Damage = 0;
     [SerializeField] private int Defense = 0;
 
