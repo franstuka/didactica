@@ -40,16 +40,18 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    public int actualLevel;
+    public int actualLevel = 1;
     public bool onCombat;
     public bool levelWasStarted;
 
     [SerializeField] private PauseMenuScript menu;
     [SerializeField] List<Item> initialItems = new List<Item>();
     [SerializeField] private List<GameObject> enemyPrefabsList = new List<GameObject>();
+    [SerializeField] private List<string> scenesName;
 
     private Dictionary<int, Dictionary<int, GameObject>> enemyDictionaryByLevel = new Dictionary<int, Dictionary<int, GameObject>>();
-    private const int startPlayerHp = 5;
+    private const int startPlayerHp = 3;
+
 
     //enemyPrefabList save all the enemies as start-up info and enemyDictioraryByLevel organice that information as a dictionary ordenated by enemy level,
     //then, the enemyPrefabsList is voided for not store useless data in memory.  
@@ -99,14 +101,14 @@ public class GameManager : MonoBehaviour {
         saveDataManager.SavePlayerData();
         saveDataManager.SaveLevelData();
         saveDataManager.SaveEnemyData(false, enemyName, enemyLevel, enemyPosition);
-        ChangeScene("Combat");//TEST
+        ChangeScene("Combat");
     }
 
     public void OnCombatFinish()
     {
         onCombat = false;
         saveDataManager.SavePlayerData();
-        ChangeScene("SampleScene void"); //TEST
+        ChangeScene(GetActiveSceneName() + " void");
     }
 
     public void ReturnToLevelScene()
@@ -163,8 +165,8 @@ public class GameManager : MonoBehaviour {
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().movementsAvaible = GetLevelMovements(level);
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, startPlayerHp);
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP, startPlayerHp);
+            player.GetComponent<PlayerMovement>().SetStats(CombatStats.CombatStatsType.MAXHP, startPlayerHp);
+            player.GetComponent<PlayerMovement>().SetStats(CombatStats.CombatStatsType.HP, startPlayerHp);
         }
         else
         {
@@ -262,6 +264,17 @@ public class GameManager : MonoBehaviour {
         }
         enemyPrefabsList.Clear();
     }
+
+    public string GetActiveSceneName()
+    {
+        return scenesName[actualLevel -1];
+    }
+
+    public string GetSceneNameByLevel(int level)
+    {
+        return scenesName[level -1];
+    }
+
 
     IEnumerator LoadPlayerDataOnScene() //this is used on change scene next fixed update, when escena has been changed
     {

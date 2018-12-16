@@ -694,7 +694,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95572807750843240
 Animator:
@@ -746,8 +746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waipoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4268340513951146, guid: 999b518d6a84f424eb92f21ee20b6e15, type: 2}
+  - {fileID: 4665241805140474, guid: 999b518d6a84f424eb92f21ee20b6e15, type: 2}
 --- !u!114 &114333673958019208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,8 +759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f047ab3bb302f48b720af8cfa5c290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdedPosition: {fileID: 0}
-  faceToThisPosition: {fileID: 0}
+  holdedPosition: {fileID: 4268340513951146, guid: 999b518d6a84f424eb92f21ee20b6e15,
+    type: 2}
+  faceToThisPosition: {fileID: 4665241805140474, guid: 999b518d6a84f424eb92f21ee20b6e15,
+    type: 2}
 --- !u!114 &114847758785162866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -785,11 +787,11 @@ MonoBehaviour:
   sumProbability: 40
   substractionProbability: 30
   multiplyProbability: 20
-  divideProbability: 5
+  divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
-  activeState: 0
+  activeState: 4
 --- !u!137 &137771383415052696
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

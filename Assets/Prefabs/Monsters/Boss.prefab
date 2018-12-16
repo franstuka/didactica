@@ -3052,13 +3052,13 @@ MonoBehaviour:
   DieSound: {fileID: 0}
   nav: {fileID: 0}
   staticEnemy: 0
-  sumProbability: 0
-  substractionProbability: 0
-  multiplyProbability: 0
+  sumProbability: 10
+  substractionProbability: 60
+  multiplyProbability: 20
   divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
-  numOfOperations: 2
+  numOfOperations: 3
   activeState: 2
 --- !u!137 &137780857476984200
 SkinnedMeshRenderer:

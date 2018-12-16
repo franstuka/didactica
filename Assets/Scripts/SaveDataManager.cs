@@ -148,8 +148,8 @@ public class SaveDataManager : MonoBehaviour {
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().movementsAvaible = movementsAvaible;
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, playerMaxHP);
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP , playerHP);
+            player.GetComponent<PlayerMovement>().SetStats(CombatStats.CombatStatsType.MAXHP, playerMaxHP);
+            player.GetComponent<PlayerMovement>().SetStats(CombatStats.CombatStatsType.HP , playerHP);
         }
         else
         {

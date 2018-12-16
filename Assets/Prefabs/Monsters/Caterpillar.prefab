@@ -1457,9 +1457,9 @@ MonoBehaviour:
   DieSound: {fileID: 0}
   nav: {fileID: 0}
   staticEnemy: 0
-  sumProbability: 0
-  substractionProbability: 0
-  multiplyProbability: 0
+  sumProbability: 60
+  substractionProbability: 20
+  multiplyProbability: 10
   divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1

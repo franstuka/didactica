@@ -95,7 +95,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void CreateMatrix()
     {
-        if (scene.name == "Level 1")
+        if (scene.name == "Level 1" || GameManager.instance != null && GameManager.instance.GetActualLevel() == 1 )
         {
             Level1Matrix = new int[,] { {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                                         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -168,7 +168,7 @@ public class GridMap : MonoBehaviour { //By default this is for a quad grid
 
     private void AssignCosts()
     {
-        if (scene.name == "Level 1" || scene.name == "Level 3")
+        if (scene.name == "Level 1" || scene.name == "Level 1 void" || scene.name == "Level 3")
         {            
             for(int x = 0; x < gridSizeX; x++)
             {

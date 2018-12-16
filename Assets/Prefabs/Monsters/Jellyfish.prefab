@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1323782619490268
 GameObject:
   m_ObjectHideFlags: 1
@@ -2202,7 +2202,7 @@ MonoBehaviour:
   sumProbability: 20
   substractionProbability: 50
   multiplyProbability: 30
-  divideProbability: 5
+  divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 2
