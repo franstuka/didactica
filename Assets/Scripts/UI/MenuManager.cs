@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Play () {
-        SceneManager.LoadScene("SampleScene");
+        GameManager.instance.ChangeScene(GameManager.instance.GetSceneNameByLevel(1));
     }
 
     void LevelSelection()
@@ -70,11 +70,11 @@ public class MenuManager : MonoBehaviour {
 
     void Level1()
     {
-        SceneManager.LoadScene("Level 1");
+        GameManager.instance.ChangeScene(GameManager.instance.GetSceneNameByLevel(1));
     }
 
     void Level2()
     {
-        SceneManager.LoadScene("Level 2");
+        GameManager.instance.ChangeScene(GameManager.instance.GetSceneNameByLevel(3));
     }
 }

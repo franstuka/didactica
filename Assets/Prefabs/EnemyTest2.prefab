@@ -275,8 +275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f047ab3bb302f48b720af8cfa5c290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdedPosition: {fileID: 0}
-  faceToThisPosition: {fileID: 0}
+  holdedPosition: {fileID: 4237230257749220, guid: 9fc7c6dbf7160534da696c14b0845f6f,
+    type: 2}
+  faceToThisPosition: {fileID: 4566819584396252, guid: 9fc7c6dbf7160534da696c14b0845f6f,
+    type: 2}
 --- !u!136 &136633485642308620
 CapsuleCollider:
   m_ObjectHideFlags: 1

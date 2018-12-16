@@ -103,6 +103,44 @@ ModelImporter:
     100194: Esqueleto
     100196: //RootNode
     100198: Lamp
+    100200: Bone.005_end_end
+    100202: Bone.017_end_end
+    100204: Bone.021_end_end
+    100206: Bone.025_end_end
+    100208: Bone.026_end_end
+    100210: Bone.030_end_end
+    100212: Bone.038_end_end
+    100214: Bone.039_end_end
+    100216: Bone.049_end_end
+    100218: Bone.054_end_end
+    100220: Bone.060_end_end
+    100222: Bone.061_end_end
+    100224: Bone.062_end_end
+    100226: Bone.063_end_end
+    100228: Bone.068_end_end
+    100230: Bone.073_end_end
+    100232: Bone.078_end_end
+    100234: Bone.083_end_end
+    100236: Bone_end_end
+    100238: Bone.005_end_end_end
+    100240: Bone.017_end_end_end
+    100242: Bone.021_end_end_end
+    100244: Bone.025_end_end_end
+    100246: Bone.026_end_end_end
+    100248: Bone.030_end_end_end
+    100250: Bone.038_end_end_end
+    100252: Bone.039_end_end_end
+    100254: Bone.049_end_end_end
+    100256: Bone.054_end_end_end
+    100258: Bone.060_end_end_end
+    100260: Bone.061_end_end_end
+    100262: Bone.062_end_end_end
+    100264: Bone.063_end_end_end
+    100266: Bone.068_end_end_end
+    100268: Bone.073_end_end_end
+    100270: Bone.078_end_end_end
+    100272: Bone.083_end_end_end
+    100274: Bone_end_end_end
     400000: Bone
     400002: Bone.001
     400004: Bone.002
@@ -203,13 +241,56 @@ ModelImporter:
     400194: Esqueleto
     400196: //RootNode
     400198: Lamp
+    400200: Bone.005_end_end
+    400202: Bone.017_end_end
+    400204: Bone.021_end_end
+    400206: Bone.025_end_end
+    400208: Bone.026_end_end
+    400210: Bone.030_end_end
+    400212: Bone.038_end_end
+    400214: Bone.039_end_end
+    400216: Bone.049_end_end
+    400218: Bone.054_end_end
+    400220: Bone.060_end_end
+    400222: Bone.061_end_end
+    400224: Bone.062_end_end
+    400226: Bone.063_end_end
+    400228: Bone.068_end_end
+    400230: Bone.073_end_end
+    400232: Bone.078_end_end
+    400234: Bone.083_end_end
+    400236: Bone_end_end
+    400238: Bone.005_end_end_end
+    400240: Bone.017_end_end_end
+    400242: Bone.021_end_end_end
+    400244: Bone.025_end_end_end
+    400246: Bone.026_end_end_end
+    400248: Bone.030_end_end_end
+    400250: Bone.038_end_end_end
+    400252: Bone.039_end_end_end
+    400254: Bone.049_end_end_end
+    400256: Bone.054_end_end_end
+    400258: Bone.060_end_end_end
+    400260: Bone.061_end_end_end
+    400262: Bone.062_end_end_end
+    400264: Bone.063_end_end_end
+    400266: Bone.068_end_end_end
+    400268: Bone.073_end_end_end
+    400270: Bone.078_end_end_end
+    400272: Bone.083_end_end_end
+    400274: Bone_end_end_end
     2000000: Camera
     2100000: Material
+    2100002: Material.002
     4300000: Cubo.001
     7400000: Esqueleto|EsqueletoAction
+    7400002: IdleBoss
+    7400004: AtaqueBoss
+    7400006: AtaqueBoss
     9500000: //RootNode
     10800000: Lamp
     13700000: Cubo.001
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -228,7 +309,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
+    importAnimatedCustomProperties: 1
     importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
@@ -237,7 +318,63 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: IdleBoss
+      takeName: Esqueleto|Esqueleto|Esqueleto|Esqueleto|Esqueleto|EsqueletoAction|Esquele
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: AtaqueBoss
+      takeName: Esqueleto|Esqueleto|Esqueleto|Esqueleto|Esqueleto|EsqueletoAction|Esq.000
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -282,7 +419,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

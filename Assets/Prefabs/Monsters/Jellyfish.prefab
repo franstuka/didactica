@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1323782619490268
 GameObject:
   m_ObjectHideFlags: 1
@@ -2113,7 +2113,7 @@ Transform:
   m_GameObject: {fileID: 1313875519761188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 35}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
   - {fileID: 4871906268761900}
   - {fileID: 4493598238266682}
@@ -2189,8 +2189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e497ff6a09aeeff479dba01423ac6730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 5
-  HP: 5
+  MaxHp: 2
+  HP: 2
   Damage: 0
   Defense: 0
   anim: {fileID: 0}
@@ -2199,9 +2199,9 @@ MonoBehaviour:
   DieSound: {fileID: 0}
   nav: {fileID: 0}
   staticEnemy: 0
-  sumProbability: 0
-  substractionProbability: 0
-  multiplyProbability: 0
+  sumProbability: 20
+  substractionProbability: 50
+  multiplyProbability: 30
   divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
@@ -2271,7 +2271,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 512e029620d4eea4b86a5db3cc0994eb, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 436d93c37fcb37b4190782a7a0a7c249, type: 3}
   m_Bones:
   - {fileID: 4891279599091274}
   - {fileID: 4944849538235070}

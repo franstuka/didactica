@@ -243,7 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99732158a27cc714999934787dce9aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waipoints: []
+  waipoints:
+  - {fileID: 4468942146103236, guid: 9fc7c6dbf7160534da696c14b0845f6f, type: 2}
+  - {fileID: 4534225312695148, guid: 9fc7c6dbf7160534da696c14b0845f6f, type: 2}
 --- !u!114 &114627293735736680
 MonoBehaviour:
   m_ObjectHideFlags: 1

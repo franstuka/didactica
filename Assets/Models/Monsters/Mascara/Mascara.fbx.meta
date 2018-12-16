@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: b7b7157a5cec2fb4395f3d8fe7bcb1a7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BichoTexturizado:Mesh
+    100002: BrazoD
+    100004: BrazoI
+    100006: Cabeza
+    100008: Cadera
+    100010: Cola1
+    100012: Cola2
+    100014: Cola3
+    100016: Cuerpo
+    100018: ikHandle1
+    100020: ikHandle2
+    100022: joint2
+    100024: joint3
+    100026: ManoD
+    100028: ManoI
+    100030: //RootNode
+    100032: "Mu\xF1ecaD"
+    100034: "Mu\xF1ecaI"
+    100036: PieD
+    100038: PiernaD
+    100040: PiernaI
+    100042: RodillaD
+    400000: BichoTexturizado:Mesh
+    400002: BrazoD
+    400004: BrazoI
+    400006: Cabeza
+    400008: Cadera
+    400010: Cola1
+    400012: Cola2
+    400014: Cola3
+    400016: Cuerpo
+    400018: ikHandle1
+    400020: ikHandle2
+    400022: joint2
+    400024: joint3
+    400026: ManoD
+    400028: ManoI
+    400030: //RootNode
+    400032: "Mu\xF1ecaD"
+    400034: "Mu\xF1ecaI"
+    400036: PieD
+    400038: PiernaD
+    400040: PiernaI
+    400042: RodillaD
+    2100000: BichoTexturizado_Bicho1
+    4300000: BichoTexturizado:Mesh
+    9500000: //RootNode
+    13700000: BichoTexturizado:Mesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Cadera
+    rootMotionBoneRotation: {x: 0.066502936, y: 0.77816135, z: 0.109179094, w: 0.61491644}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

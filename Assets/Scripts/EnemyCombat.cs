@@ -169,6 +169,21 @@ public class EnemyCombat : CombatStats {
         return numOfOperations;
     }
 
+    public int GetEnemyState()
+    {
+        return System.Convert.ToInt32(activeState);
+    }
+
+    public Vector3 GetTarget()
+    {
+        return target;
+    }
+
+    public void SetTarget(Vector3 target)
+    {
+        this.target = target;
+    }
+
     IEnumerator WaitEndFrameToStartIA()
     {
         yield return new WaitForEndOfFrame();

@@ -48,6 +48,18 @@ ModelImporter:
     100084: Esqueleto
     100086: Foco
     100088: //RootNode
+    100090: Bone.024_end_end
+    100092: Bone.025_end_end
+    100094: Bone.026_end_end
+    100096: Bone.027_end_end
+    100098: Bone.029_end_end
+    100100: Bone.035_end_end
+    100102: Bone.036_end_end
+    100104: Bone.044_end_end
+    100106: Bone.045_end_end
+    100108: Bone.046_end_end
+    100110: Bone.047_end_end
+    100112: Bone.048_end_end
     400000: Bone
     400002: Bone.001
     400004: Bone.002
@@ -93,10 +105,23 @@ ModelImporter:
     400084: Esqueleto
     400086: Foco
     400088: //RootNode
+    400090: Bone.024_end_end
+    400092: Bone.025_end_end
+    400094: Bone.026_end_end
+    400096: Bone.027_end_end
+    400098: Bone.029_end_end
+    400100: Bone.035_end_end
+    400102: Bone.036_end_end
+    400104: Bone.044_end_end
+    400106: Bone.045_end_end
+    400108: Bone.046_end_end
+    400110: Bone.047_end_end
+    400112: Bone.048_end_end
     2000000: Camera
     2100000: No Name
     4300000: Esfera
     7400000: Esqueleto|EsqueletoAction
+    7400002: Esqueleto|Esqueleto|Esqueleto|EsqueletoAction|Esqueleto|EsqueletoActi.001
     9500000: //RootNode
     10800000: Foco
     13700000: Esfera
@@ -172,7 +197,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

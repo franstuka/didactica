@@ -16,8 +16,13 @@ public class SaveDataManager : MonoBehaviour {
     //Scene items to save
     public Vector3 playerPositionOnScene;
     public Quaternion playerRotationOnScene;
-    public List<GameObject> enemiesPosition;
-    //public List<Vector3> enemyTargetMovement; //maybe not necesary
+    //enemies info
+    public List<Vector3> enemiesPositionList = new List<Vector3>();
+    public List<Quaternion> enemiesOrientationList = new List<Quaternion>();
+    public List<string> enemiesNameList = new List<string>();
+    public List<int> enemiesLevelList = new List<int>();
+    public List<int> enemiesStateList = new List<int>();
+    public List<Vector3> enemiesTargetList = new List<Vector3>();
     public List<GameObject> staticItemsInScene; //like chest etc
     public int sceneLevel; //just for error control
     //data saved for combat
@@ -30,8 +35,12 @@ public class SaveDataManager : MonoBehaviour {
     {
         maxLevel = 1;
         inventoryStored = new List<Item>();
-        enemiesPosition = new List<GameObject>();
-        //enemyTargetMovement = new List<Vector3>();
+        enemiesPositionList = new List<Vector3>();
+        enemiesOrientationList = new List<Quaternion>();
+        enemiesNameList = new List<string>();
+        enemiesLevelList = new List<int>();
+        enemiesStateList = new List<int>();
+        enemiesTargetList = new List<Vector3>();
         staticItemsInScene = new List<GameObject>();
     }
 
@@ -97,18 +106,31 @@ public class SaveDataManager : MonoBehaviour {
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
         playerPositionOnScene = player.transform.position;
         playerRotationOnScene = player.transform.rotation;
-        ////////////////////NEEDS TO BE REWORKED LIKE RYZE ////////////////////////////
+        //find enemies and clear lists
         EnemyCombat[] enemies = FindObjectsOfType<EnemyCombat>();
-        List<GameObject> enemiesList = new List<GameObject>();
+        enemiesPositionList = new List<Vector3>();
+        enemiesOrientationList = new List<Quaternion>();
+        enemiesNameList = new List<string>();
+        enemiesLevelList = new List<int>();
+        enemiesStateList = new List<int>();
+        enemiesTargetList = new List<Vector3>();
+            
+        //save data
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemiesPositionList.Add(enemies[i].transform.position);
+            enemiesOrientationList.Add(enemies[i].transform.rotation);
+            enemiesNameList.Add(enemies[i].name);
+            enemiesLevelList.Add(enemies[i].GetEnemyLevel());
+            enemiesStateList.Add(enemies[i].GetEnemyState());
+            enemiesTargetList.Add(enemies[i].transform.position);
+        }
+        
         //Chest[] chests = FindObjectsOfType<Chest>();
         //List<GameObject> chestList = new List<GameObject>();
         //////////////////////
         sceneLevel = GameManager.instance.GetActualLevel();
 
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemiesList.Add(enemies[i].gameObject);
-        }
         /*
         for (int i = 0; i < chest.Length; i++)
         {
@@ -126,8 +148,8 @@ public class SaveDataManager : MonoBehaviour {
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().movementsAvaible = movementsAvaible;
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.MAXHP, playerMaxHP);
-            player.GetComponent<PlayerMovement>().ChangeStats(CombatStats.CombatStatsType.HP , playerHP);       
+            player.GetComponent<PlayerMovement>().SetStats(CombatStats.CombatStatsType.MAXHP, playerMaxHP);
+            player.GetComponent<PlayerMovement>().SetStats(CombatStats.CombatStatsType.HP , playerHP);
         }
         else
         {
@@ -149,12 +171,30 @@ public class SaveDataManager : MonoBehaviour {
     public void LoadLevelData()
     {
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        
+        bool end;
         if(player != null && sceneLevel == actualLevel)
         {
             player.transform.SetPositionAndRotation(playerPositionOnScene,playerRotationOnScene);
-            for (int i = 0; i < enemiesPosition.Count; i++)
+            //spawn enemies
+
+            for (int i = 0; i < enemiesPositionList.Count; i++)
             {
-                Instantiate(enemiesPosition[i]);
+                if(!randomCombat && enemiesPositionList[i] == enemyInCombatPosition)
+                {
+                    continue;
+                }
+                end = false;
+                for (int j = 0; j < GameManager.instance.GetMonsterLevelList(enemiesLevelList[i]).Count && !end; j++)
+                {
+                    if (GameManager.instance.GetMonsterLevelList(enemiesLevelList[i])[j].name == enemiesNameList[i])
+                    {
+                        end = true;
+                        GameObject enemySpawned = Instantiate<GameObject>(GameManager.instance.GetMonsterLevelList(enemiesLevelList[i])[j], enemiesPositionList[i], enemiesOrientationList[i]);
+                        enemySpawned.GetComponent<EnemyCombat>().SetTarget(enemiesTargetList[i]);
+                        enemySpawned.name = enemiesNameList[i];
+                    }
+                }
             }
             for (int i = 0; i < staticItemsInScene.Count; i++)
             {
@@ -196,13 +236,5 @@ public class SaveDataManager : MonoBehaviour {
     public void LoadInPersistent()
     {
 
-    }
-
-    private void Update() //for test
-    {
-        if(Input.GetKeyDown("0"))
-        {
-            SavePlayerData();
-        }
     }
 }

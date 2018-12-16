@@ -5,7 +5,7 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour {
 
     [SerializeField] private Transform positionToSpawnEnemy;
-
+    public GameObject PanelVida;
     private List<Card> cardListCombat;
 
     private float sumProbability;
@@ -73,7 +73,8 @@ public class CombatManager : MonoBehaviour {
     {
         if(enemy != null)
         {
-            GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy);
+            GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+            enemySpawned.transform.position = new Vector3 (0,0,0);
             GetEnemyParameters(enemySpawned);
         }
         else
@@ -84,7 +85,8 @@ public class CombatManager : MonoBehaviour {
                 //Explanation: Gets the monster list asociated to the actual level and selects one random enemy inside the list
                 enemy = GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel())
                     [Mathf.FloorToInt(Random.Range(0f, 0.999f) * GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel()).Count)];
-                GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy);
+                GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+                enemySpawned.transform.position = new Vector3 (0,0,0);
                 GetEnemyParameters(enemySpawned);
             }
             else
@@ -140,7 +142,8 @@ public class CombatManager : MonoBehaviour {
         int result = 0;
         LinkedList<int> cardValues = new LinkedList<int>();
         LinkedList<int> cardOperations = new LinkedList<int>();
-
+        LinkedList<int> numOrder = new LinkedList<int>();
+        LinkedList<int> operationOrder = new LinkedList<int>();
         //add values to list
         for (int i = 0; i < cardListCombat.Count; i++)
         {
@@ -183,34 +186,48 @@ public class CombatManager : MonoBehaviour {
 
         //select first element
         searchedNum = Random.Range(0, cardValues.Count);
-        result = GetCardListValue(searchedNum, ref cardValues, true);
-
+        numOrder.AddLast(GetCardListValue(searchedNum, ref cardValues, true));
+        
+        Debug.Log(numOrder.First.Value);
         while (operationsRealizated < maxOperations && !end)
         {
             switch(GetOperationBasedOnPercentages(ref cardOperations))
             {
                 case 0:
                     {
+                        
                         searchedNum = Random.Range(0, cardValues.Count); //select value
-                        result = result + GetCardListValue(searchedNum, ref cardValues, true);
+                        Debug.Log(" + ");
+                        Debug.Log(GetCardListValue(searchedNum, ref cardValues, false));
+                        numOrder.AddLast(GetCardListValue(searchedNum, ref cardValues, true));
+                        operationOrder.AddLast(0);
                         DeleteOperationFromList(ref cardOperations, 0);
                         operationsRealizated++;
+                        
                         break;
                     }
                 case 1:
                     {
                         searchedNum = Random.Range(0, cardValues.Count); //select value
-                        result = result - GetCardListValue(searchedNum, ref cardValues, true);
+                        Debug.Log(" - ");
+                        Debug.Log(GetCardListValue(searchedNum, ref cardValues, false));
+                        numOrder.AddLast(GetCardListValue(searchedNum, ref cardValues, true));
+                        operationOrder.AddLast(1);
                         DeleteOperationFromList(ref cardOperations, 1);
                         operationsRealizated++;
+                        
                         break;
                     }
                 case 2:
                     {
                         searchedNum = Random.Range(0, cardValues.Count); //select value
-                        result = result * GetCardListValue(searchedNum, ref cardValues, true);
+                        Debug.Log(" * ");
+                        Debug.Log(GetCardListValue(searchedNum, ref cardValues, false));
+                        numOrder.AddLast(GetCardListValue(searchedNum, ref cardValues, true));
+                        operationOrder.AddLast(2);
                         DeleteOperationFromList(ref cardOperations, 2);
                         operationsRealizated++;
+                        
                         break;
                     }
                 case 3:
@@ -220,10 +237,13 @@ public class CombatManager : MonoBehaviour {
 
                         if ((bool)posibleDivision[0])
                         {
+                            Debug.Log(" / ");
+                            Debug.Log(GetCardListValue((int)posibleDivision[2], ref cardValues, false));
                             //if is a valid result, the num will be removed in ResolveDivisionCase
                             DeleteOperationFromList(ref cardOperations, 3);
-                            result = (int)posibleDivision[2];
-                            operationsRealizated++;
+                            numOrder.AddLast(GetCardListValue((int)posibleDivision[2], ref cardValues, true));
+                            operationOrder.AddLast(3);
+                            operationsRealizated++; 
                         }
                         else
                         {
@@ -233,9 +253,77 @@ public class CombatManager : MonoBehaviour {
                             }
                         }
                         break;
+                        
                     }
             }
         }
+        LinkedListNode<int> numNode = numOrder.First;
+        LinkedListNode<int> opNode = operationOrder.First;
+        end = false;
+        Debug.Log(result + "Result");
+        while (opNode != null)
+        {
+            if(opNode.Value == 2 ) //multiplkication
+            {
+                if(opNode.Previous.Value == 1)
+                {
+                    result -= numNode.Value * numNode.Next.Value;
+                    Debug.Log(result + "Result");
+                }
+                else
+                {
+                    result += numNode.Value * numNode.Next.Value;
+                    Debug.Log(result + "Result");
+                }
+                
+            }
+            else if(opNode.Value == 3)  //division
+            {
+                result += numNode.Value / numNode.Next.Value;
+                Debug.Log(result + "Result");
+            }
+        
+            opNode = opNode.Next;
+            numNode = numNode.Next;
+        }
+        numNode = numOrder.First;
+        opNode = operationOrder.First;
+        while (opNode != null)
+        {
+            if (opNode.Value == 0)  //add
+            {
+                if(opNode.Next == null || opNode.Next.Value != 2 && opNode.Next.Value != 3)
+                {
+                    result += numNode.Next.Value;
+                    Debug.Log(result + "Result");
+                }
+                
+            }
+            else if (opNode.Value == 1)  //subst
+            {
+                if (opNode.Next == null || opNode.Next.Value != 2 && opNode.Next.Value != 3)
+                {
+                    result -= numNode.Next.Value;
+                    Debug.Log(result + "Result");
+                }
+            }
+            opNode = opNode.Next;
+            numNode = numNode.Next;
+        }
+        if(operationOrder.First.Value != 2 && operationOrder.First.Value != 3) //add first number
+        {
+            result += numOrder.First.Value;
+        }
+        numNode = numOrder.First;
+        opNode = operationOrder.First;
+        while (opNode != null)
+        {
+            Debug.Log(numNode.Value);
+            Debug.Log(opNode.Value + "OP");
+            opNode = opNode.Next;
+            numNode = numNode.Next;
+        }
+        Debug.Log(numNode.Value);
         monsterLife = result; //put the result as monsterlife
     }
 
@@ -295,7 +383,6 @@ public class CombatManager : MonoBehaviour {
                 value = node.Value;
                 if(delete)
                 {
-                    Debug.Log(value);
                     cardValues.Remove(node);
                 }    
                 return value;
@@ -414,6 +501,8 @@ public class CombatManager : MonoBehaviour {
             else //do damage
             {
                 player.ChangeStats(CombatStats.CombatStatsType.HP, -1);
+                Transform corazon = PanelVida.transform.GetChild(0);
+                Destroy(corazon.gameObject);
                 //maybe end game
             }
         }
