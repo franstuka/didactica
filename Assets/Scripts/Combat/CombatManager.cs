@@ -73,7 +73,8 @@ public class CombatManager : MonoBehaviour {
     {
         if(enemy != null)
         {
-            GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy);
+            GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+            enemySpawned.transform.position = new Vector3 (0,0,0);
             GetEnemyParameters(enemySpawned);
         }
         else
@@ -84,7 +85,8 @@ public class CombatManager : MonoBehaviour {
                 //Explanation: Gets the monster list asociated to the actual level and selects one random enemy inside the list
                 enemy = GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel())
                     [Mathf.FloorToInt(Random.Range(0f, 0.999f) * GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel()).Count)];
-                GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy);
+                GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+                enemySpawned.transform.position = new Vector3 (0,0,0);
                 GetEnemyParameters(enemySpawned);
             }
             else
