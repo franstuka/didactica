@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour {
         levelWasStarted = false;
         onCombat = false;
         ChangeScene("Menu");
+        
     }
 
     public void SaveAndQuit()
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour {
     public void ChangeScene(string sceneName)
     {
         StartCoroutine(ChangeToOtherScene(sceneName));
+        Debug.Log("Entra en la corotunia");
     }
 
     public object[] GetMonsterOnCombat()
