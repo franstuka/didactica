@@ -121,6 +121,13 @@ public class PlayerMovement : CombatStats
         canMove = true;
         openingChest = false;
     }
-  
 
+    public override void Die()
+    {
+
+        GameManager.instance.OnLevelFail();
+        GameManager.instance.InicialiceFirstLevelPlayerData(1);
+        GameManager.saveDataManager.ClearEnemyData();
+
+    }
 }
