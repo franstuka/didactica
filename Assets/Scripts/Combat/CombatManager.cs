@@ -510,7 +510,10 @@ public class CombatManager : MonoBehaviour {
                 player.ChangeStats(CombatStats.CombatStatsType.HP, -1);
                 Transform corazon = PanelVida.transform.GetChild(0);
                 Destroy(corazon.gameObject);
-                enemySpawned.GetComponent<Animator>().SetTrigger("Ataque");
+                if(enemySpawned.GetComponent<Animator>() != null)
+                {
+                    enemySpawned.GetComponent<Animator>().SetTrigger("Ataque");
+                }
                 //enemySpawned.GetComponent<Animator>().ResetTrigger("Ataque");
                 //maybe end game
             }

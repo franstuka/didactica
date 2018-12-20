@@ -134,6 +134,7 @@ MonoBehaviour:
   - {fileID: 1512808509028604, guid: 11b471877609128478c924d9cfb42d50, type: 2}
   - {fileID: 1313875519761188, guid: b183f1a9f7a52f04ba9de149db30fd9c, type: 2}
   - {fileID: 1570724306659614, guid: 5cd340a5d828b4f4da4d5e2972e13597, type: 2}
+  - {fileID: 1319892902028092, guid: 6dfb9e0969f5f774580c6230e6402406, type: 2}
   - {fileID: 1313977190718682, guid: dd1e17061da55cd49bd003124cec8406, type: 2}
   scenesName:
   - Level 1
