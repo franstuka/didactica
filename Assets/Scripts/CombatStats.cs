@@ -73,6 +73,7 @@ public class CombatStats : MonoBehaviour {
                 }    
                 if (HP < 0)
                 {
+                    Debug.Log(HP);
                     HP = 0;
                     Die();
                 }
