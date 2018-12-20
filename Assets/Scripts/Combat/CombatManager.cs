@@ -8,6 +8,7 @@ public class CombatManager : MonoBehaviour {
     public GameObject PanelVida;
     private List<Card> cardListCombat;
 
+    private GameObject enemySpawned;
     private float sumProbability;
     private float substractionProbability;
     private float multiplyProbability;
@@ -73,8 +74,11 @@ public class CombatManager : MonoBehaviour {
     {
         if(enemy != null)
         {
-            GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
-            enemySpawned.transform.position = new Vector3 (0,0,0);
+            enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+            //enemySpawned.transform.position = new Vector3 (0,0,0);
+            enemy.gameObject.transform.SetParent(positionToSpawnEnemy);
+            enemySpawned.GetComponent<Navegation>().enabled = false;
+            enemySpawned.GetComponent<Animator>().SetTrigger("Combate");
             GetEnemyParameters(enemySpawned);
         }
         else
@@ -86,7 +90,10 @@ public class CombatManager : MonoBehaviour {
                 enemy = GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel())
                     [Mathf.FloorToInt(Random.Range(0f, 0.999f) * GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel()).Count)];
                 GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
-                enemySpawned.transform.position = new Vector3 (0,0,0);
+                //enemySpawned.transform.position = new Vector3 (0,0,0);
+                enemy.gameObject.transform.SetParent(positionToSpawnEnemy);
+                enemySpawned.GetComponent<Navegation>().enabled = false;
+                enemySpawned.GetComponent<Animator>().SetTrigger("Combate");
                 GetEnemyParameters(enemySpawned);
             }
             else
@@ -263,7 +270,7 @@ public class CombatManager : MonoBehaviour {
         Debug.Log(result + "Result");
         while (opNode != null)
         {
-            if(opNode.Value == 2 ) //multiplkication
+            if(opNode.Value == 2 && opNode.Previous != null ) //multiplkication
             {
                 if(opNode.Previous.Value == 1)
                 {
@@ -503,6 +510,8 @@ public class CombatManager : MonoBehaviour {
                 player.ChangeStats(CombatStats.CombatStatsType.HP, -1);
                 Transform corazon = PanelVida.transform.GetChild(0);
                 Destroy(corazon.gameObject);
+                enemySpawned.GetComponent<Animator>().SetTrigger("Ataque");
+                //enemySpawned.GetComponent<Animator>().ResetTrigger("Ataque");
                 //maybe end game
             }
         }

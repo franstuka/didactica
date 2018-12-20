@@ -413,6 +413,11 @@ GameObject:
   - component: {fileID: 95137023144163920}
   - component: {fileID: 114550339052027484}
   - component: {fileID: 114970409277640198}
+  - component: {fileID: 65275631691836622}
+  - component: {fileID: 65874237816203006}
+  - component: {fileID: 54523074357285682}
+  - component: {fileID: 114579484320263018}
+  - component: {fileID: 114401209112901288}
   m_Layer: 0
   m_Name: Jellyfish
   m_TagString: Untagged
@@ -2112,7 +2117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313875519761188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
   - {fileID: 4871906268761900}
@@ -2160,6 +2165,45 @@ Transform:
   m_Father: {fileID: 4692953213491982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54523074357285682
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313875519761188}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65275631691836622
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313875519761188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11, y: 0.09, z: 0.07}
+  m_Center: {x: 0, y: 0.04, z: 0.005}
+--- !u!65 &65874237816203006
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313875519761188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11, y: 0.1, z: 0.09}
+  m_Center: {x: 0, y: 0.04, z: 0.005}
 --- !u!95 &95137023144163920
 Animator:
   serializedVersion: 3
@@ -2178,6 +2222,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114401209112901288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313875519761188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99732158a27cc714999934787dce9aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waipoints: []
 --- !u!114 &114550339052027484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2198,15 +2254,30 @@ MonoBehaviour:
   GetDamageSound: {fileID: 0}
   DieSound: {fileID: 0}
   nav: {fileID: 0}
-  staticEnemy: 0
+  staticEnemy: 1
   sumProbability: 20
   substractionProbability: 50
   multiplyProbability: 30
   divideProbability: 0
   numSteepsWinOnDefeat: 10
-  monsterLevel: 1
-  numOfOperations: 2
-  activeState: 2
+  monsterLevel: 99
+  numOfOperations: 1
+  activeState: 4
+--- !u!114 &114579484320263018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313875519761188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f047ab3bb302f48b720af8cfa5c290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdedPosition: {fileID: 4139579949375168, guid: 980448b82173dc04eb70312971495e69,
+    type: 2}
+  faceToThisPosition: {fileID: 4852750872544330, guid: cd547b813051b40468e275f91050d21c,
+    type: 2}
 --- !u!114 &114970409277640198
 MonoBehaviour:
   m_ObjectHideFlags: 1

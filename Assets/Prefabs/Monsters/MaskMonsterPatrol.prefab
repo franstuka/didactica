@@ -617,7 +617,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512808509028604}
   m_LocalRotation: {x: -0, y: 0.6605068, z: -0, w: 0.75082016}
-  m_LocalPosition: {x: -7.3034344, y: 0, z: 1.5175383}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4494616609816318}
@@ -787,8 +787,8 @@ MonoBehaviour:
   multiplyProbability: 20
   divideProbability: 0
   numSteepsWinOnDefeat: 10
-  monsterLevel: 1
-  numOfOperations: 2
+  monsterLevel: 99
+  numOfOperations: 1
   activeState: 4
 --- !u!137 &137771383415052696
 SkinnedMeshRenderer:
