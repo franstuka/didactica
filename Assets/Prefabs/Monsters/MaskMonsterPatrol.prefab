@@ -787,7 +787,7 @@ MonoBehaviour:
   multiplyProbability: 20
   divideProbability: 0
   numSteepsWinOnDefeat: 10
-  monsterLevel: 99
+  monsterLevel: 1
   numOfOperations: 1
   activeState: 4
 --- !u!137 &137771383415052696

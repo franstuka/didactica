@@ -141,6 +141,25 @@ ModelImporter:
     100270: Bone.078_end_end_end
     100272: Bone.083_end_end_end
     100274: Bone_end_end_end
+    100276: Bone.005_end_end_end_end
+    100278: Bone.017_end_end_end_end
+    100280: Bone.021_end_end_end_end
+    100282: Bone.025_end_end_end_end
+    100284: Bone.026_end_end_end_end
+    100286: Bone.030_end_end_end_end
+    100288: Bone.038_end_end_end_end
+    100290: Bone.039_end_end_end_end
+    100292: Bone.049_end_end_end_end
+    100294: Bone.054_end_end_end_end
+    100296: Bone.060_end_end_end_end
+    100298: Bone.061_end_end_end_end
+    100300: Bone.062_end_end_end_end
+    100302: Bone.063_end_end_end_end
+    100304: Bone.068_end_end_end_end
+    100306: Bone.073_end_end_end_end
+    100308: Bone.078_end_end_end_end
+    100310: Bone.083_end_end_end_end
+    100312: Bone_end_end_end_end
     400000: Bone
     400002: Bone.001
     400004: Bone.002
@@ -279,6 +298,25 @@ ModelImporter:
     400270: Bone.078_end_end_end
     400272: Bone.083_end_end_end
     400274: Bone_end_end_end
+    400276: Bone.005_end_end_end_end
+    400278: Bone.017_end_end_end_end
+    400280: Bone.021_end_end_end_end
+    400282: Bone.025_end_end_end_end
+    400284: Bone.026_end_end_end_end
+    400286: Bone.030_end_end_end_end
+    400288: Bone.038_end_end_end_end
+    400290: Bone.039_end_end_end_end
+    400292: Bone.049_end_end_end_end
+    400294: Bone.054_end_end_end_end
+    400296: Bone.060_end_end_end_end
+    400298: Bone.061_end_end_end_end
+    400300: Bone.062_end_end_end_end
+    400302: Bone.063_end_end_end_end
+    400304: Bone.068_end_end_end_end
+    400306: Bone.073_end_end_end_end
+    400308: Bone.078_end_end_end_end
+    400310: Bone.083_end_end_end_end
+    400312: Bone_end_end_end_end
     2000000: Camera
     2100000: Material
     2100002: Material.002
