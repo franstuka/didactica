@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+
 
 public class GameManager : MonoBehaviour {
 
@@ -140,9 +142,10 @@ public class GameManager : MonoBehaviour {
 
     public void OnLevelFail()
     {
-        levelWasStarted = false;
+        levelWasStarted = true;
         onCombat = false;
         ChangeScene("Menu");
+        //PrefabUtility.ResetToPrefabState(Selection.activeGameObject);
         
     }
 

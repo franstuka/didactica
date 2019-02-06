@@ -617,7 +617,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512808509028604}
   m_LocalRotation: {x: -0, y: 0.6605068, z: -0, w: 0.75082016}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.3034344, y: 0, z: 1.5175383}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4494616609816318}
@@ -746,8 +746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waipoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4253759906109962, guid: f275c1e60f6354b4fa7970f7ab1e105a, type: 2}
+  - {fileID: 4331847435481494, guid: cb5e8f1b3c9b76e4fa71e19e7e63873a, type: 2}
 --- !u!114 &114333673958019208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,8 +759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f047ab3bb302f48b720af8cfa5c290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdedPosition: {fileID: 0}
-  faceToThisPosition: {fileID: 0}
+  holdedPosition: {fileID: 4253759906109962, guid: f275c1e60f6354b4fa7970f7ab1e105a,
+    type: 2}
+  faceToThisPosition: {fileID: 4331847435481494, guid: cb5e8f1b3c9b76e4fa71e19e7e63873a,
+    type: 2}
 --- !u!114 &114847758785162866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -789,7 +791,7 @@ MonoBehaviour:
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
   numOfOperations: 1
-  activeState: 4
+  activeState: 0
 --- !u!137 &137771383415052696
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

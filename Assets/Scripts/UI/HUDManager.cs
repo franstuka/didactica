@@ -103,7 +103,7 @@ public class HUDManager : MonoBehaviour {
 
     void UpdateHP()
     {
-        HPText.text = "" + playerMovement.GetMaxHP() + "/" + playerMovement.GetHP();
+        HPText.text = "" + playerMovement.GetHP() + "/" + playerMovement.GetMaxHP();
         lastHP = playerMovement.GetHP();
     }
 

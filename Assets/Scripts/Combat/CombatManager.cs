@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour {
 
     [SerializeField] private Transform positionToSpawnEnemy;
     public GameObject PanelVida;
+    public GameObject imagenVida;
+    public GameObject GameMHP;
+    public GameObject enemigoComodin;
+    public GameObject[] enemigosRandom;
     private List<Card> cardListCombat;
 
     private GameObject enemySpawned;
@@ -19,10 +24,15 @@ public class CombatManager : MonoBehaviour {
     private int maxOperations;
     private int maxCardsInHand = 6;
 
+    
+
     private void Awake()
     {
         cardListCombat = new List<Card>();
         CreateMonsterValue();
+    }
+    private void Start() {
+        StartCoroutine("SetHPPlayer");
     }
 
     private void CreateMonsterValue()
@@ -31,6 +41,35 @@ public class CombatManager : MonoBehaviour {
         GetCombatCardList();
         GetMonsterLife();
         //Elección de monstruo y vida
+    }
+
+    private void setCombatHpPlayer(){
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        int vidaactual = player.GetComponent<PlayerMovement>().GetHP();
+        print ("tengo tanta vida "+ vidaactual);
+         GameObject heart =Instantiate(imagenVida);
+        GameObject heart2 =Instantiate(imagenVida);
+        GameObject heart3 =Instantiate(imagenVida);
+        switch (vidaactual)
+        {
+            case 1:
+            heart.transform.SetParent(PanelVida.transform);
+            break;
+
+            case 2:
+          
+            heart.transform.SetParent(PanelVida.transform);
+            heart2.transform.SetParent(PanelVida.transform);
+            break;
+
+            case 3:
+           
+            heart.transform.SetParent(PanelVida.transform);
+            heart2.transform.SetParent(PanelVida.transform);
+            heart3.transform.SetParent(PanelVida.transform);
+            break;
+        }
+
     }
 
     private void DeterminateMonsterToSpawn()
@@ -66,7 +105,12 @@ public class CombatManager : MonoBehaviour {
         }
         if((bool)monsterData[0] == true || errorOnFindEnemy) //spawn a random enemy
         {
-            SpawnEnemy(null);
+            
+                int indicenemigo= Random.Range (0, enemigosRandom.Length);
+
+                //Explanation: Gets the monster list asociated to the actual level and selects one random enemy inside the list
+               GameObject enemy = enemigosRandom[indicenemigo];
+            SpawnEnemy(enemy);
         }
     }
 
@@ -76,9 +120,10 @@ public class CombatManager : MonoBehaviour {
         {
             enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
             //enemySpawned.transform.position = new Vector3 (0,0,0);
-            enemy.gameObject.transform.SetParent(positionToSpawnEnemy);
+            
             enemySpawned.GetComponent<Navegation>().enabled = false;
             enemySpawned.GetComponent<Animator>().SetTrigger("Combate");
+            print(enemySpawned);
             GetEnemyParameters(enemySpawned);
         }
         else
@@ -86,10 +131,8 @@ public class CombatManager : MonoBehaviour {
             
             if(GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel()).Count > 0)
             {
-                //Explanation: Gets the monster list asociated to the actual level and selects one random enemy inside the list
-                enemy = GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel())
-                    [Mathf.FloorToInt(Random.Range(0f, 0.999f) * GameManager.instance.GetMonsterLevelList(GameManager.instance.GetActualLevel()).Count)];
-                GameObject enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+
+                enemySpawned = Instantiate(enemy, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
                 //enemySpawned.transform.position = new Vector3 (0,0,0);
                 enemy.gameObject.transform.SetParent(positionToSpawnEnemy);
                 enemySpawned.GetComponent<Navegation>().enabled = false;
@@ -99,14 +142,21 @@ public class CombatManager : MonoBehaviour {
             else
             {
                 Debug.LogError("No enemies on level " + GameManager.instance.GetActualLevel() + " list");
+                enemySpawned = Instantiate(enemigoComodin, positionToSpawnEnemy.position,positionToSpawnEnemy.rotation);
+                //enemySpawned.transform.position = new Vector3 (0,0,0);
+                
+                enemySpawned.GetComponent<Navegation>().enabled = false;
+                enemySpawned.GetComponent<Animator>().SetTrigger("Combate");
+                GetEnemyParameters(enemySpawned);
+
             }
             
         }
     }
 
-    private void GetEnemyParameters(GameObject enemySpawned)
+    private void GetEnemyParameters(GameObject enemySpawnedPar)
     {
-        EnemyCombat stats = enemySpawned.GetComponent<EnemyCombat>();
+        EnemyCombat stats = enemySpawnedPar.GetComponent<EnemyCombat>();
         if(stats != null)
         {
             float[] probabilities = stats.GetEnemyProbabilities();
@@ -496,7 +546,7 @@ public class CombatManager : MonoBehaviour {
 
     public void ResolveCombat(int value)
     {
-
+      
         PlayerMovement player = FindObjectOfType<PlayerMovement>();
         if (player != null)
         {
@@ -509,12 +559,22 @@ public class CombatManager : MonoBehaviour {
             {
                 player.ChangeStats(CombatStats.CombatStatsType.HP, -1);
                 Transform corazon = PanelVida.transform.GetChild(0);
+                
+                
                 Destroy(corazon.gameObject);
-                if(enemySpawned.GetComponent<Animator>() != null)
-                {
-                    enemySpawned.GetComponent<Animator>().SetTrigger("Ataque");
+
+                 player.GetComponent<PlayerMovement>().SetHP(player.GetComponent<PlayerMovement>().GetHP()-1);
+                print("tengo vida "+player.GetComponent<PlayerMovement>().GetHP());
+                if(player.GetComponent<PlayerMovement>().GetHP()== 0){
+                    GameManager.instance.OnLevelFail();
                 }
-                //enemySpawned.GetComponent<Animator>().ResetTrigger("Ataque");
+              
+                if(enemySpawned.gameObject.GetComponent<Animator>() != null)
+                {
+                    enemySpawned.gameObject.GetComponent<Animator>().SetTrigger("Ataque");
+                }
+               
+             
                 //maybe end game
             }
         }
@@ -533,5 +593,13 @@ public class CombatManager : MonoBehaviour {
 
         return monsterLife;
 
+    }
+
+    IEnumerator SetHPPlayer() 
+    {
+    
+        yield return new WaitForSeconds(0.1f);
+        setCombatHpPlayer();
+        
     }
 }

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4313444683110280}
   - component: {fileID: 65764716146425960}
-  - component: {fileID: 114762847221107952}
+  - component: {fileID: 114729801683311752}
   m_Layer: 0
   m_Name: Puerta
   m_TagString: Untagged
@@ -194,12 +194,12 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091042024189710}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.318472, y: 7.5618386, z: 1}
   m_Center: {x: 0.11413511, y: 0.1685514, z: -8.521893e-18}
---- !u!114 &114762847221107952
+--- !u!114 &114729801683311752
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,6 +207,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091042024189710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 530b9d4cb4621b74abd54696be830d7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5595c2de27cf30c47ab7bbd99c09fe15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

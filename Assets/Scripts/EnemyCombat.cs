@@ -105,10 +105,7 @@ public class EnemyCombat : CombatStats {
                 }
             case EnemyState.HOLD:
                 {
-                    if (!FaceAndCheckObjective(hold.DirectionToFace(), 2f))
-                    {
-                        activeState = EnemyState.RETURNING_TO_POSITION;
-                    }
+                 
                     break;
                 }
             case EnemyState.RETURNING_TO_POSITION:

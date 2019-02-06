@@ -11,19 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Avene
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 74314841
   material: {fileID: 21813600638318274}
-  materialHashCode: 0
+  materialHashCode: 1809580338
   fontAssetType: 2
   m_fontInfo:
     Name: Avene
     PointSize: 206
-    Scale: 0
+    Scale: 1
     CharacterCount: 93
     LineHeight: 206
     Baseline: 0
     Ascender: 155
-    CapHeight: 0
+    CapHeight: 145
     Descender: -52
     CenterLine: 0
     SuperscriptOffset: 155
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 10.3
     strikethrough: 37.454544
     strikethroughThickness: 10.3
-    TabWidth: 0
+    TabWidth: 540
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 1019
-    width: 0
-    height: 0
+    width: 54
+    height: 207
     xOffset: 0
-    yOffset: 0
+    yOffset: 155
     xAdvance: 54
     scale: 1
   - id: 33
@@ -976,7 +976,7 @@ Material:
     - _VertexOffsetY: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FaceColor: {r: 0.9329767, g: 0.9716981, b: 0, a: 1}
 --- !u!28 &28324476392640560
 Texture2D:
   m_ObjectHideFlags: 0

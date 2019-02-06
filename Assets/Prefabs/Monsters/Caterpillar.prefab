@@ -2044,7 +2044,7 @@ MonoBehaviour:
   divideProbability: 0
   numSteepsWinOnDefeat: 10
   monsterLevel: 1
-  numOfOperations: 2
+  numOfOperations: 1
   activeState: 2
 --- !u!137 &137982144354792158
 SkinnedMeshRenderer:

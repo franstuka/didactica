@@ -31,6 +31,12 @@ public class CombatStats : MonoBehaviour {
         return HP;
     }
 
+    
+    public void SetHP(int newHp)
+    {
+        HP = newHp;
+    }
+
     public int GetMaxHP()
     {
         return MaxHp;

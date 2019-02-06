@@ -202,7 +202,7 @@ public class SaveDataManager : MonoBehaviour {
             }
         }
         else
-            Debug.LogError("Something is going grong on load level");
+            Debug.LogError("Something is going wrong on load level");
     }
 
     public void SaveEnemyData(bool randomCombat)

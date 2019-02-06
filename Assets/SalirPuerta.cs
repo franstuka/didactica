@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Puerta : MonoBehaviour {
+public class SalirPuerta : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
